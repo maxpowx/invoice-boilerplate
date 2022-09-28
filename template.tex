@@ -5,7 +5,7 @@
 
 % LAYOUT
 %--------------------------------
-\usepackage{geometry} 
+\usepackage{geometry}
 \geometry{$geometry$}
 
 % No page numbers
@@ -28,8 +28,12 @@ $endif$
 
 % converts LaTeX specials (quotes, dashes etc.) to Unicode
 \defaultfontfeatures{Mapping=tex-text}
-\setromanfont [Ligatures={Common}, Numbers={OldStyle}]{$seriffont$}
-\setsansfont[Scale=0.9]{$sansfont$}
+%\setromanfont [Ligatures={Common}, Numbers={OldStyle}]{$seriffont$}
+%\setsansfont[Scale=0.9]{$sansfont$}
+% enjoy default fonts -> src https://texfaq.org/FAQ-uselmfonts
+% https://tex.stackexchange.com/questions/147194/is-it-still-useful-to-load-the-lmodern-package
+% TODO what fonts use?
+\usepackage{lmodern}
 
 % Set paragraph break
 \setlength{\parskip}{1em}
@@ -66,7 +70,7 @@ $endif$
 %--------------------------------
 $if(lang)$
 \usepackage{polyglossia}
-\setmainlanguage{$polyglossia-lang.name$}
+\setmainlanguage{$lang.name$}
 $endif$
 
 % PDF SETUP
@@ -83,33 +87,29 @@ $endif$
   urlcolor=blue
 }
 
-% To display custom date
-% \usepackage[nodayofweek]{datetime}
-% \newdate{date}{01}{12}{1867}
-% \date{\displaydate{date}}
-% Use this instead of \today: % \displaydate{date}
+% src https://tex.stackexchange.com/questions/152392/date-format-yyyy-mm-dd
+\def\mydate{\leavevmode\hbox{\the\year-\the\month-\the\day}}
+\def\twodigits#1{\ifnum#1<10 0\fi\the#1}
 
 % DOCUMENT
 %--------------------------------
 \begin{document}
-\small
-\textsc{\textbf{$author$}}
-$for(from)$
-\textbullet{} \textsc{$from$}
-$endfor$
+
+\normalsize \sffamily
+\textsc{\textbf{$from.name$}}\\
+$from.vat$\\
 
 \vspace{1em}
 
 \normalsize \sffamily
-$for(to)$
-$to$\\
-$endfor$
+\textsc{\textbf{$to.name$}}\\
+$to.vat$\\
 
 \vspace{6em}
 
 \begin{flushright}
   \small
-  $city$, \today
+  $lang.date-text$: $if(date-value)$$date-value$$else$\mydate$endif$
 \end{flushright}
 
 \vspace{1em}
@@ -124,7 +124,7 @@ $if(commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
 
 \begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
   \hdashline[1pt/1pt]
-  @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{Description} & @ \textbf{Prices in $currency$} \\ \hline
+  @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{$lang.descriptioncolumn-text$} & @ \textbf{$lang.pricecolumn-text$ $currency$} \\ \hline
       $for(service)$ @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos 
         & @ $service.description$ 
         $if(service.details)$\newline \begin{itemize} 
@@ -146,12 +146,5 @@ $if(commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
 $closingnote$
 
 \medskip
-
-\IfFileExists{signature.pdf}
-{
-      \includegraphics[height=3.5\baselineskip]{signature.pdf} \par
-}
-
-$author$
 
 \end{document}

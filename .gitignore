@@ -1,1 +1,7 @@
 output.pdf
+
+template.aux
+template.fdb_latexmk
+template.log
+template.fls
+debug.tex
