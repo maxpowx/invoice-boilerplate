@@ -3,41 +3,41 @@ fontsize: 10pt
 lang: *en-GB
 
 invoice: 
-  number: 2022-09_008
-  date-value: 2022-9-30 #if date-value var is null then date is today
-  currency: EUR
+  number: 2020-09_042
+  date-value: 2020-9-30 #if date-value var is null then date is today
+  currency: USD
   payment-due: 15
 from:
-  name: Your freelance name
-  vat: Your VAT number
+  name: Acme Rocket-Powered Products, Inc.
+  vat: XX-XXXXXXX
   vat-rate: 19
   address:
-    line-1: Address part 1
-    line-2: Address part 2
-    city: city name
-    zip-code: 99999
-    country: COUNTRY
+    line-1: Coyote street
+    city: Fairfield
+    zip-code: 07004
+    state: New Jersey
+    country: U.S.A
 to:
-  name: Your customer name
-  vat: Your customer VAT number
+  name: Warner Drive
+  vat: GB123456789
   address:
-    line-1: Address part 1
-    line-2: Address part 2
-    city: city name
-    zip-code: 99999
-    country: COUNTRY
+    line-1: Leavesden
+    city: Hertfordshire
+    zip-code: WD25 7LP
+    country: United Kingdom
 service:
-- description: The first service provided
+- description: ACMEVISION Consulting
   price: 320.00
   details:
-- description: And another one, with a list of details
+    - "Product advices for the movie 'Space Jam: A New Legacy'"
+- description: ACME Promo Pack
   price: 245.00
   details:
-    - Some more detailed explanation
-    - of the service provided
-    - Looking good
-- description: The last service provided
-  price: 65.00
+    - ACME Hat
+    - ACME Marker Pen
+    - ACME Bird Seeds
 
 closingnote: |
-  Some note
+  Space Jam: A New Legacy (also known as Space Jam 2) is a 2021 American live-action/animated sports comedy film
+   The film also features the Looney Tunes characters such as Bugs Bunny, Lola Bunny, and Daffy Duck. 
+   It is Warner Animation Group's ninth feature film.
