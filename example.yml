@@ -1,3 +1,5 @@
+geometry: a4paper
+fontsize: 10pt
 lang: *en-GB
 
 invoice: 
@@ -38,13 +40,4 @@ service:
   price: 65.00
 
 closingnote: |
-
-    IBAN: Your IBAN so they can send you the money (in the original, here was a letter)
-
-
-# Typography and layout
-# this part is disabled, I preferred right now the default fonts from latex
-#seriffont: Liberation Serif
-#sansfont: Liberation Sans
-fontsize: 10pt
-geometry: a4paper, left=43mm, right=43mm, top=51mm, bottom=17mm
+  Some note

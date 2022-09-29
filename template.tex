@@ -28,6 +28,10 @@
               {\color{white}\chapterlabel#1};
        \end{tikzpicture}
       };
+    \fill[mpx-lightgrey] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east) -- 
+      ([yshift=5cm]current page.south east) -- ([yshift=5cm]current page.south west) -- cycle;
+    \fill[mpx-brown] (current page.south west) -- (current page.south east) --
+      ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
    \end{tikzpicture}
   }
 \titlespacing*{\chapter}{0pt}{50pt}{-60pt}
@@ -48,28 +52,11 @@
 \usepackage{fontspec} 
 \usepackage{xunicode}
 \usepackage{xltxtra}
-
-% converts LaTeX specials (quotes, dashes etc.) to Unicode
-\defaultfontfeatures{Mapping=tex-text}
-%\setromanfont [Ligatures={Common}, Numbers={OldStyle}]{$seriffont$}
-%\setsansfont[Scale=0.9]{$sansfont$}
-% enjoy default fonts -> src https://texfaq.org/FAQ-uselmfonts
-% https://tex.stackexchange.com/questions/147194/is-it-still-useful-to-load-the-lmodern-package
-% TODO what fonts use?
+\defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (quotes, dashes etc.) to Unicode
 \usepackage{lmodern}
 
 % Set paragraph break
 \setlength{\parskip}{1em}
-
-% Custom ampersand
-\newcommand{\amper}{{\fontspec[Scale=.95]{$seriffont$}\selectfont\itshape\&}}
-
-$if(seriffont)$
-\setmainfont[SmallCapsFeatures={LetterSpace=5,Letters=SmallCaps}]{$seriffont$}
-$endif$
-$if(sansfont)$
-    \setsansfont{$sansfont$}
-$endif$
 
 % Command required by how Pandoc handles the list conversion
 \providecommand{\tightlist}{%
