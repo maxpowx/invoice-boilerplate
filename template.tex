@@ -8,6 +8,26 @@
 \definecolor{mpx-lightgrey}{HTML}{F3F3F3}
 \definecolor{mpx-blue}{HTML}{4A5B72}
 \definecolor{mpx-lightblue}{HTML}{DCDEE0}
+
+% LAYOUT
+%--------------------------------
+\usepackage{geometry}
+\geometry{$geometry$}
+
+% No page numbers
+\pagenumbering{gobble}
+
+% Left align
+\usepackage[document]{ragged2e}
+
+% TYPOGRAPHY
+%--------------------------------
+\usepackage{fontspec} 
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (quotes, dashes etc.) to Unicode
+\usepackage{lmodern}
+
 \usepackage{tikz}
 \usepackage[explicit]{titlesec}
 \newcommand*\chapterlabel{}
@@ -28,32 +48,29 @@
               {\color{white}\chapterlabel#1};
        \end{tikzpicture}
       };
-    \fill[mpx-lightgrey] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east) -- 
-      ([yshift=5cm]current page.south east) -- ([yshift=5cm]current page.south west) -- cycle;
+    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payementdue-bg) at (current page.south west)
+      {\small \sffamily \textsc{$lang.payement-due-text$}};
+    \fill[mpx-lightgrey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
+      ([xshift=-0.1cm]payementdue-bg.south west) [rounded corners=0.1cm] -- 
+      (payementdue-bg.north west) [rounded corners=0.1cm] -- 
+      (payementdue-bg.north east) [rounded corners=0.1cm] -- 
+      ([xshift=0.1cm]payementdue-bg.south east) -- 
+      ([yshift=5cm]current page.south east) --
+      ([yshift=0.5cm]current page.south east) -- 
+      ([yshift=0.5cm]current page.south west) -- cycle;
+    \draw[mpx-grey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
+      ([xshift=-0.1cm]payementdue-bg.south west) [rounded corners=0.1cm] -- 
+      (payementdue-bg.north west) [rounded corners=0.1cm] -- 
+      (payementdue-bg.north east) [rounded corners=0.1cm] -- 
+      ([xshift=0.1cm]payementdue-bg.south east) --
+      ([yshift=5cm]current page.south east);
+    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payementdue) at (current page.south west)
+      {\small \sffamily \textsc{$lang.payement-due-text$}};
     \fill[mpx-brown] (current page.south west) -- (current page.south east) --
       ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
    \end{tikzpicture}
   }
 \titlespacing*{\chapter}{0pt}{50pt}{-60pt}
-
-% LAYOUT
-%--------------------------------
-\usepackage{geometry}
-\geometry{$geometry$}
-
-% No page numbers
-\pagenumbering{gobble}
-
-% Left align
-\usepackage[document]{ragged2e}
-
-% TYPOGRAPHY
-%--------------------------------
-\usepackage{fontspec} 
-\usepackage{xunicode}
-\usepackage{xltxtra}
-\defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (quotes, dashes etc.) to Unicode
-\usepackage{lmodern}
 
 % Set paragraph break
 \setlength{\parskip}{1em}
