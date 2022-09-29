@@ -1,7 +1,36 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[$fontsize$, a4paper]{article}
+\documentclass[$fontsize$, a4paper, svgnames]{report}
+\usepackage{xcolor}
+\definecolor{mpx-brown}{HTML}{534022}
+\definecolor{mpx-grey}{HTML}{BFBFBF}
+\definecolor{mpx-lightgrey}{HTML}{F3F3F3}
+\definecolor{mpx-blue}{HTML}{4A5B72}
+\definecolor{mpx-lightblue}{HTML}{DCDEE0}
+\usepackage{tikz}
+\usepackage[explicit]{titlesec}
+\newcommand*\chapterlabel{}
+\titleformat{\chapter}
+  {\gdef\chapterlabel{}
+   \normalfont\sffamily\Huge\bfseries\scshape}
+  {\gdef\chapterlabel{\thechapter\ }}{0pt}
+  {\begin{tikzpicture}[remember picture,overlay]
+    \fill[mpx-brown] (current page.north west) -- (current page.north east) --
+      ([yshift=-0.2cm]current page.north east) -- ([yshift=-0.2cm]current page.north west) -- cycle;
+    \fill[mpx-lightgrey] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
+      ([yshift=-3cm]current page.north east) -- ([yshift=-3cm]current page.north west) -- cycle;
+    \node[yshift=-3cm] at (current page.north west)
+      {\begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=east,xshift=.9\paperwidth,rectangle,
+              rounded corners=3pt,inner sep=11pt,
+              fill=mpx-blue]
+              {\color{white}\chapterlabel#1};
+       \end{tikzpicture}
+      };
+   \end{tikzpicture}
+  }
+\titlespacing*{\chapter}{0pt}{50pt}{-60pt}
 
 % LAYOUT
 %--------------------------------
@@ -13,12 +42,6 @@
 
 % Left align
 \usepackage[document]{ragged2e}
-
-$if(letterhead)$
-  % To include the letterhead
-  \usepackage{wallpaper}
-  \ULCornerWallPaper{1}{letterhead.pdf}
-$endif$
 
 % TYPOGRAPHY
 %--------------------------------
@@ -55,7 +78,6 @@ $endif$
 % TABLE CUSTOMIZATION
 %--------------------------------
 \usepackage{spreadtab}
-\usepackage[compact]{titlesec} % For customizing title sections
 \titlespacing*{\section}{0pt}{3pt}{-7pt} % Remove margin bottom from the title
 \usepackage{arydshln} % For the dotted line on the table
 \renewcommand{\arraystretch}{1.5} % Apply vertical padding to table cells
@@ -78,9 +100,9 @@ $endif$
 \usepackage[xetex, bookmarks, colorlinks, breaklinks]{hyperref}
 \hypersetup
 {
-  pdfauthor={$author$},
-  pdfsubject=Invoice Nr. $invoice-nr$,
-  pdftitle=Invoice Nr. $invoice-nr$,
+  pdfauthor={$from.name$},
+  pdfsubject=$lang.invoice-number-text$ $invoice.number$,
+  pdftitle=$lang.invoice-number-text$ $invoice.number$,
   linkcolor=blue,
   citecolor=blue,
   filecolor=black,
@@ -94,6 +116,8 @@ $endif$
 % DOCUMENT
 %--------------------------------
 \begin{document}
+
+\chapter{$lang.invoice-text$}
 
 \normalsize \sffamily
 \textsc{\textbf{$from.name$}}\\
@@ -109,33 +133,33 @@ $to.vat$\\
 
 \begin{flushright}
   \small
-  $lang.date-text$: $if(date-value)$$date-value$$else$\mydate$endif$
+  $lang.date-text$: $if(invoice.date-value)$$invoice.date-value$$else$\mydate$endif$
 \end{flushright}
 
 \vspace{1em}
 
 
-\section*{\textsc{Invoice} \textsc{\#$invoice-nr$}}
+\section*{\textbf{$lang.invoice-number-text$ $invoice.number$}}
 \footnotesize
 \newcounter{pos}
 \setcounter{pos}{0}
 \STautoround*{2} % Get spreadtab to always display the decimal part
-$if(commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
+$if(lang.commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
 
 \begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
   \hdashline[1pt/1pt]
-  @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{$lang.descriptioncolumn-text$} & @ \textbf{$lang.pricecolumn-text$ $currency$} \\ \hline
+  @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{$lang.descriptioncolumn-text$} & @ \textbf{$lang.pricecolumn-text$ $invoice.currency$} \\ \hline
       $for(service)$ @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos 
         & @ $service.description$ 
         $if(service.details)$\newline \begin{itemize} 
           $for(service.details)$\scriptsize \item $service.details$ 
           $endfor$ \end{itemize}
           $endif$ & $service.price$\\$endfor$ \noalign{\vskip 2mm} \hline
-  $if(VAT)$
-    @ & @ \multicolumn{1}{r}{Subtotal:}                & :={sum(c1:[0,-1])} \\ \hhline{~~-}
-    @ & @ \multicolumn{1}{r}{VAT $VAT$\%:}               & $VAT$/100*[0,-1] \\ \hhline{~~-}
+  $if(from.vat-rate)$
+    @ & @ \multicolumn{1}{r}{$lang.subtotal-text$:}                & :={sum(c1:[0,-1])} \\ \hhline{~~-}
+    @ & @ \multicolumn{1}{r}{$lang.vat-text$ $from.vat-rate$\%:}   & $from.vat-rate$/100*[0,-1] \\ \hhline{~~-}
   $endif$
-  @ & @ \multicolumn{1}{r}{\textbf{Total:}}   & \textbf{:={$if(VAT)$[0,-1]+[0,-2]$else$sum(c1:[0,-1])$endif$}} \\ \hhline{~~-}
+  @ & @ \multicolumn{1}{r}{\textbf{$lang.total-text$:}}   & \textbf{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(c1:[0,-1])$endif$}} \\ \hhline{~~-}
 \end{spreadtab}
 
 

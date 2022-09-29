@@ -5,23 +5,27 @@
 # translations
 
 english: &en-GB
+  commasep: true
   date-text: Date
   invoice-text: Invoice
-  quote-text: Quote
+  invoice-number-text: Invoice Nr.
   descriptioncolumn-text: Description
   pricecolumn-text: Prices in
-  paymentconditions-text: Payment conditions in 30 days after invoice's date
-  paymentdue-text: Payment due in 30 days after invoice's date
+  subtotal-text: Sub-total
+  vat-text: VAT
+  total-text: Total
   name: english
 
 french: &fr-BE
+  commasep: true
   date-text: Date
   invoice-text: Facture
-  quote-text: Devis
+  invoice-number-text: Facture \#
   descriptioncolumn-text: Description
-  pricecolumn-text: Prix
-  paymentconditions-text: Payment conditions in 30 days after invoice's date
-  paymentdue-text: Payment due in 30 days after invoice's date
+  pricecolumn-text: Prix en
+  subtotal-text: Sous-total
+  vat-text: TVA
+  total-text: Total
   name: français
 
 #########################
