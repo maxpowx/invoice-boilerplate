@@ -1,7 +1,13 @@
-output.pdf
+*.pdf
+!example.pdf
 
-template.aux
-template.fdb_latexmk
-template.log
-template.fls
+*.yml
+!internationalization.yml
+!example.yml
+!footnote.yml
+
+*.aux
+*.fdb_latexmk
+*.log
+*.fls
 debug.tex
