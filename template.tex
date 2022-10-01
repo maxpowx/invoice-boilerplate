@@ -31,9 +31,7 @@
 \usepackage{tikz}
 \usepackage[explicit]{titlesec}
 
-\usepackage{atbegshi}
-
-\newcommand*\Header{%
+\newcommand*\HeaderDocumentDetails{%
   \begin{tikzpicture}[remember picture,overlay]
     \fill[mpx-brown] (current page.north west) -- (current page.north east) --
       ([yshift=-0.2cm]current page.north east) -- ([yshift=-0.2cm]current page.north west) -- cycle;
@@ -42,7 +40,16 @@
   \end{tikzpicture}%
 }
 
-\newcommand\Footer{%
+\newcommand*\HeaderSimple{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[mpx-brown] (current page.north west) -- (current page.north east) --
+      ([yshift=-0.2cm]current page.north east) -- ([yshift=-0.2cm]current page.north west) -- cycle;
+    \fill[mpx-lightgrey] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
+      ([yshift=-2cm]current page.north east) -- ([yshift=-2cm]current page.north west) -- cycle;
+  \end{tikzpicture}%
+}
+
+\newcommand\FooterCompanyDetails{%
   \begin{tikzpicture}[remember picture,overlay]
     \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payementdue-bg) at (current page.south west)
       {\small \sffamily \textsc{$lang.payement-due-text$}};
@@ -67,9 +74,17 @@
   \end{tikzpicture}%
 }
 
+\newcommand\FooterSimple{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[mpx-brown] (current page.south west) -- (current page.south east) --
+      ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
+  \end{tikzpicture}%
+}
+
+\usepackage{atbegshi}
 \pagestyle{empty}
-\AtBeginShipout{\Header\Footer}
-\AtBeginShipoutFirst{\Header\Footer}
+\AtBeginShipout{\HeaderSimple\FooterSimple}
+\AtBeginShipoutFirst{\HeaderDocumentDetails\FooterCompanyDetails}
 
 \newcommand*\chapterlabel{}
 \titleformat{\chapter}
@@ -192,4 +207,8 @@ $closingnote$
 
 \medskip
 
+\chapter{$lang.timesheet-text$}
+timesheet
+\chapter{$lang.expenses-text$}
+expenses
 \end{document}

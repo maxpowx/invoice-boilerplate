@@ -15,6 +15,8 @@ english: &en-GB
   vat-text: VAT
   total-text: Total
   payement-due-text: This invoice is due to be paid to
+  timesheet-text: Timesheet
+  expenses-text: Expenses
   name: english
 
 french: &fr-BE
@@ -28,6 +30,8 @@ french: &fr-BE
   vat-text: TVA
   total-text: Total
   payement-due-text: Cette facture est à payer à
+  timesheet-text: Emploi du temps
+  expenses-text: Frais
   name: français
 
 #########################
