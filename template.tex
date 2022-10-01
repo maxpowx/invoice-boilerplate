@@ -30,24 +30,20 @@
 
 \usepackage{tikz}
 \usepackage[explicit]{titlesec}
-\newcommand*\chapterlabel{}
-\titleformat{\chapter}
-  {\gdef\chapterlabel{}
-   \normalfont\sffamily\Huge\bfseries\scshape}
-  {\gdef\chapterlabel{\thechapter\ }}{0pt}
-  {\begin{tikzpicture}[remember picture,overlay]
+
+\usepackage{atbegshi}
+
+\newcommand*\Header{%
+  \begin{tikzpicture}[remember picture,overlay]
     \fill[mpx-brown] (current page.north west) -- (current page.north east) --
       ([yshift=-0.2cm]current page.north east) -- ([yshift=-0.2cm]current page.north west) -- cycle;
     \fill[mpx-lightgrey] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
       ([yshift=-3cm]current page.north east) -- ([yshift=-3cm]current page.north west) -- cycle;
-    \node[yshift=-3cm] at (current page.north west)
-      {\begin{tikzpicture}[remember picture, overlay]
-        \node[anchor=east,xshift=.9\paperwidth,rectangle,
-              rounded corners=3pt,inner sep=11pt,
-              fill=mpx-blue]
-              {\color{white}\chapterlabel#1};
-       \end{tikzpicture}
-      };
+  \end{tikzpicture}%
+}
+
+\newcommand\Footer{%
+  \begin{tikzpicture}[remember picture,overlay]
     \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payementdue-bg) at (current page.south west)
       {\small \sffamily \textsc{$lang.payement-due-text$}};
     \fill[mpx-lightgrey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
@@ -68,7 +64,28 @@
       {\small \sffamily \textsc{$lang.payement-due-text$}};
     \fill[mpx-brown] (current page.south west) -- (current page.south east) --
       ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
-   \end{tikzpicture}
+  \end{tikzpicture}%
+}
+
+\pagestyle{empty}
+\AtBeginShipout{\Header\Footer}
+\AtBeginShipoutFirst{\Header\Footer}
+
+\newcommand*\chapterlabel{}
+\titleformat{\chapter}
+  {\gdef\chapterlabel{}
+   \normalfont\sffamily\Huge\bfseries\scshape}
+  {\gdef\chapterlabel{\thechapter\ }}{0pt}
+  {\begin{tikzpicture}[remember picture,overlay]
+    \node[yshift=-3cm] at (current page.north west)
+      {\begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=east,xshift=.9\paperwidth,rectangle,
+              rounded corners=3pt,inner sep=11pt,
+              fill=mpx-blue]
+              {\color{white}\chapterlabel#1};
+       \end{tikzpicture}
+      };
+    \end{tikzpicture}
   }
 \titlespacing*{\chapter}{0pt}{50pt}{-60pt}
 
