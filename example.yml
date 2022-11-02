@@ -11,17 +11,25 @@ from:
   name: Acme Rocket-Powered Products, Inc.
   vat: XX-XXXXXXX
   vat-rate: 19
+  phone: 555-555555
+  online:
+    e-mail: invoicing@acme.inc
+    website: https://www.acme.inc
   address:
-    line-1: Coyote street
+    line-one: Acme Finance
+    line-two: Coyote street, 42
     city: Fairfield
     zip-code: 07004
     state: New Jersey
     country: U.S.A
+  bank:
+    iban: XX00 0000 0000 0000
+    bic: XXXX US 42
 to:
   name: Warner Drive
   vat: GB123456789
   address:
-    line-1: Leavesden
+    line-one: Leavesden
     city: Hertfordshire
     zip-code: WD25 7LP
     country: United Kingdom
