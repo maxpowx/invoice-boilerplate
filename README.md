@@ -1,6 +1,6 @@
 # Requirements
 
-    apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended
+    apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended texlive-fonts-extra
 
 # Usage
 

@@ -27,6 +27,7 @@
 \usepackage{xltxtra}
 \defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (quotes, dashes etc.) to Unicode
 \usepackage{lmodern}
+\usepackage{fontawesome}
 
 \usepackage{tikz}
 \usepackage[explicit]{titlesec}
@@ -77,14 +78,14 @@
               minimum height=1.5em, anchor=center},
       column 1/.style={anchor=base west},
       column 2/.style={anchor=base},
-      column 3/.style={anchor=base east},
+      column 3/.style={anchor=base west},
       ampersand replacement=\&
       ](companyinfo) at (current page.south)
       {
       \node{};                                            \& \node(inner node){$from.name$};   \& \node{}; \\
-      \node{$from.address.line-one$};                     \& \node{$from.vat$};                \& \node{$from.phone$}; \\
-      \node{$from.address.zip-code$ $from.address.city$}; \& \node{$from.bank.iban$};          \& \node{$from.online.e-mail$}; \\
-      \node{$from.address.country$};                      \& \node{$from.bank.bic$};           \& \node{$from.online.website$}; \\
+      \node{$from.address.line-one$};                     \& \node{$from.vat$};                \& \node{\faMobile $from.phone$}; \\
+      \node{$from.address.zip-code$ $from.address.city$}; \& \node{$from.bank.iban$};          \& \node{\faEnvelope $from.online.e-mail$}; \\
+      \node{$from.address.country$};                      \& \node{$from.bank.bic$};           \& \node{\faFirefox $from.online.website$}; \\
       };
     \fill[mpx-brown] (current page.south west) -- (current page.south east) --
       ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
