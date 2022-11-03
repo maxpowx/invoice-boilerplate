@@ -27,7 +27,7 @@
 \usepackage{xltxtra}
 \defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (quotes, dashes etc.) to Unicode
 \usepackage{lmodern}
-\usepackage{fontawesome}
+\usepackage{fontawesome5}
 
 \usepackage{tikz}
 \usepackage[explicit]{titlesec}
@@ -72,21 +72,24 @@
     \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payementdue) at (current page.south west)
       {\small \sffamily \textsc{$lang.payement-due-text$}};
     \matrix[
+      %draw,nodes=draw,
       yshift=3cm,
       matrix of nodes, nodes in empty cells,
-      nodes={text width=5cm, align=center,
-              minimum height=1.5em, anchor=center},
-      column 1/.style={anchor=base west},
-      column 2/.style={anchor=base},
-      column 3/.style={anchor=base west},
+      nodes={minimum height=1.5em, anchor=center},
+      column 1/.style={text width=4mm, align=center},
+      column 2/.style={text width=3.2cm, align=left},
+      column 3/.style={text width=7.5cm, align=center},
+      column 4/.style={text width=4mm, align=center},
+      column 5/.style={text width=3.2cm, align=left},
       ampersand replacement=\&
-      ](companyinfo) at (current page.south)
-      {
-      \node{};                                            \& \node(inner node){$from.name$};   \& \node{}; \\
-      \node{$from.address.line-one$};                     \& \node{$from.vat$};                \& \node{\faMobile $from.phone$}; \\
-      \node{$from.address.zip-code$ $from.address.city$}; \& \node{$from.bank.iban$};          \& \node{\faEnvelope $from.online.e-mail$}; \\
-      \node{$from.address.country$};                      \& \node{$from.bank.bic$};           \& \node{\faFirefox $from.online.website$}; \\
-      };
+     ](companyinfo) at (current page.south)
+     {
+      \node{};                     \& \node{};                                            \& \node{$from.name$}; \\
+      \node{};                     \& \node{};                                            \& \node{$from.vat$}; \\[4mm,between borders]
+      \node{\faBuilding[regular]}; \& \node{$from.address.line-one$};                     \& \node{$from.bank.name$};  \& \node{\faMobile*}; \& \node{\href{tel:$from.phone$}{$from.phone$}}; \\
+      \node{};                     \& \node{$from.address.zip-code$ $from.address.city$}; \& \node{$from.bank.bic$};   \& \node{\faAt};      \& \node{\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
+      \node{};                     \& \node{$from.address.country$};                      \& \node{$from.bank.iban$};  \& \node{\faFirefox}; \& \node{\href{$from.online.website$}{$from.online.website$}}; \\
+     };
     \fill[mpx-brown] (current page.south west) -- (current page.south east) --
       ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
   \end{tikzpicture}%

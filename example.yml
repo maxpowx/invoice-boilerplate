@@ -23,6 +23,7 @@ from:
     state: New Jersey
     country: U.S.A
   bank:
+    name: Bank of Tunes
     iban: XX00 0000 0000 0000
     bic: XXXX US 42
 to:
