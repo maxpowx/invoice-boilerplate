@@ -8,7 +8,8 @@ invoice:
   currency: USD
   payment-due: 15
 from:
-  name: Acme Rocket-Powered Products, Inc.
+  name: Acme Rocket-Powered Products
+  legalform: Inc.
   vat: XX-XXXXXXX
   vat-rate: 19
   phone: 555-555555

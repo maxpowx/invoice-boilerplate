@@ -28,6 +28,7 @@
 \defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (quotes, dashes etc.) to Unicode
 \usepackage{lmodern}
 \usepackage{fontawesome5}
+\usepackage{longfbox}
 
 \usepackage{tikz}
 \usepackage[explicit]{titlesec}
@@ -73,22 +74,30 @@
       {\small \sffamily \textsc{$lang.payement-due-text$}};
     \matrix[
       %draw,nodes=draw,
-      yshift=3cm,
-      matrix of nodes, nodes in empty cells,
+      yshift=4cm,
+      matrix of nodes, 
       nodes={minimum height=1.5em, anchor=center},
-      column 1/.style={text width=4mm, align=center},
-      column 2/.style={text width=3.2cm, align=left},
-      column 3/.style={text width=7.5cm, align=center},
-      column 4/.style={text width=4mm, align=center},
-      column 5/.style={text width=3.2cm, align=left},
+      row 1 column 1/.style={align=center,text width=5cm,font=\large},
       ampersand replacement=\&
      ](companyinfo) at (current page.south)
      {
-      \node{};                     \& \node{};                                            \& \node{$from.name$}; \\
-      \node{};                     \& \node{};                                            \& \node{$from.vat$}; \\[4mm,between borders]
-      \node{\faBuilding[regular]}; \& \node{$from.address.line-one$};                     \& \node{$from.bank.name$};  \& \node{\faMobile*}; \& \node{\href{tel:$from.phone$}{$from.phone$}}; \\
-      \node{};                     \& \node{$from.address.zip-code$ $from.address.city$}; \& \node{$from.bank.bic$};   \& \node{\faAt};      \& \node{\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
-      \node{};                     \& \node{$from.address.country$};                      \& \node{$from.bank.iban$};  \& \node{\faFirefox}; \& \node{\href{$from.online.website$}{$from.online.website$}}; \\
+      \node{\textbf{$from.name$} $from.legalform$}; \\
+      \node{$from.vat$}; \\
+     };
+     \matrix[
+      %draw,nodes=draw,
+      yshift=2cm,
+      matrix of nodes, 
+      nodes={minimum height=1.5em, anchor=west, font=\footnotesize},
+      row 1 column 1/.style={text width=6cm},
+      row 1 column 2/.style={text width=6cm},
+      row 1 column 3/.style={text width=4cm},
+      ampersand replacement=\&
+     ](companydetails) at (current page.south)
+     {
+      \node(addr1){\makebox[6mm][c]{\faBuilding[regular]}$from.address.line-one$};           \& \node(bank)[xshift=-3mm]{\makebox[6mm][c]{\faUniversity}$from.bank.name$};                                                                                                         \& \node{\makebox[6mm][c]{\faMobile*}{$from.phone$}}; \\
+      \node(addr2)[right=6mm] at (addr1.west) {$from.address.zip-code$ $from.address.city$}; \& \node(bic)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[8mm][c]{\tiny{BIC}}}\makebox[2mm]{}$from.bank.bic$};             \& \node{\makebox[6mm][c]{\faAt}\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
+      \node(addr3)[right=6mm] at (addr1.west) {$from.address.country$};                      \& \node(iban)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[8mm][c]{\tiny{IBAN}}}\makebox[2mm]{}\textbf{$from.bank.iban$}}; \& \node{\makebox[6mm][c]{\faGlobe}\url{$from.online.website$}}; \\
      };
     \fill[mpx-brown] (current page.south west) -- (current page.south east) --
       ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
@@ -164,11 +173,12 @@ $endif$
   pdfauthor={$from.name$},
   pdfsubject=$lang.invoice-number-text$ $invoice.number$,
   pdftitle=$lang.invoice-number-text$ $invoice.number$,
-  linkcolor=blue,
-  citecolor=blue,
-  filecolor=black,
-  urlcolor=blue
+  linkcolor=mpx-blue,
+  citecolor=mpx-blue,
+  filecolor=mpx-brown,
+  urlcolor=mpx-blue
 }
+\urlstyle{same}
 
 % src https://tex.stackexchange.com/questions/152392/date-format-yyyy-mm-dd
 \def\mydate{\leavevmode\hbox{\the\year-\the\month-\the\day}}
