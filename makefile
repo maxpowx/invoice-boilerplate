@@ -18,7 +18,7 @@ clean :
 # with custom yaml file
 .PHONY: with
 with :
-	cat internationalization.yml $(yml) footnote.yml > tmp.yml
+	(echo '---\n#yaml-start' && cat internationalization.yml $(yml) && echo '\n#yaml-end\n---') > tmp.yml
 	if [ -f $(OUTPUT) ]; then echo "file $(OUTPUT) already exists, delete it to regenerate" && exit 1; fi
 	$(TEX_PROCESSOR) tmp.yml -o debug.tex --template=$(TEX_TEMPLATE) $(FLAGS)
 	$(TEX_PROCESSOR) tmp.yml -o $(OUTPUT) --template=$(TEX_TEMPLATE) $(FLAGS)
