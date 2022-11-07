@@ -9,6 +9,7 @@ OUTPUT = $(subst .yml,,$(yml)).pdf
 
 .PHONY: build
 build : 
+	make clean
 	make with $(yml)
 
 .PHONY: clean
