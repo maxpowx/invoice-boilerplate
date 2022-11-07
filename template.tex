@@ -82,11 +82,11 @@
       yshift=4cm,
       matrix of nodes, 
       nodes={minimum height=1.5em, anchor=center},
-      row 1 column 1/.style={align=center,text width=5cm,font=\large},
+      row 1 column 1/.style={align=center,font=\large},
       ampersand replacement=\&
      ](companyinfo) at (current page.south)
      {
-      \node{\textbf{$from.name$} $from.legalform$}; \\
+      \node{\textcolor{mpx-blue}{\textbf{$from.name$}} \textcolor{mpx-brown}{$from.legalform$}}; \\
       \node{$from.vat$}; \\
      };
      \matrix[
