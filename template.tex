@@ -117,7 +117,7 @@
 
 \usepackage{atbegshi}
 \pagestyle{empty}
-\AtBeginShipout{\HeaderSimple\FooterSimple}
+\AtBeginShipout{\AtBeginShipoutAddToBox{\HeaderSimple\FooterSimple}}
 \AtBeginShipoutFirst{\HeaderDocumentDetails\FooterCompanyDetails}
 
 \newcommand*\chapterlabel{}
