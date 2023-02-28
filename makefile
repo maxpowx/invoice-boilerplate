@@ -14,7 +14,9 @@ build :
 
 .PHONY: clean
 clean :
-	rm *.pdf
+	rm -f *.pdf
+	rm -f template.log template.fls template.aux template.fdb_latexmk
+	rm -f tmp.yml debug.tex
 
 # with custom yaml file
 .PHONY: with
@@ -23,4 +25,4 @@ with :
 	if [ -f $(OUTPUT) ]; then echo "file $(OUTPUT) already exists, delete it to regenerate" && exit 1; fi
 	$(TEX_PROCESSOR) tmp.yml -o debug.tex --template=$(TEX_TEMPLATE) $(FLAGS)
 	$(TEX_PROCESSOR) tmp.yml -o $(OUTPUT) --template=$(TEX_TEMPLATE) $(FLAGS)
-	rm tmp.yml
+	rm -f tmp.yml debug.tex
