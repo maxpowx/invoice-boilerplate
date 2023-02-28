@@ -229,7 +229,7 @@ $if(lang.commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
 \begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
   \hdashline[1pt/1pt]
   % header
-  @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{$lang.descriptioncolumn-text$} & @ \textbf{$lang.pricecolumn-text$} \\ \hline
+  @ \noalign{\vskip 2mm} \textbf{$lang.invoice-line-text$} & @ \textbf{$lang.descriptioncolumn-text$} & @ \textbf{$lang.pricecolumn-text$} \\ \hline
   % invoice lines
       $for(service)$ @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos 
         & @ $service.description$ 

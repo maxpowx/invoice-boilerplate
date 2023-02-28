@@ -8,6 +8,7 @@ english: &en-GB
   date-text: Date
   invoice-text: Invoice
   invoice-number-text: Invoice Nr.
+  invoice-line-text: Line
   descriptioncolumn-text: Description
   pricecolumn-text: Cost
   subtotal-text: Sub-total
@@ -24,6 +25,7 @@ french: &fr-BE
   date-text: Date
   invoice-text: Facture
   invoice-number-text: Facture \#
+  invoice-line-text: Ligne
   descriptioncolumn-text: Description
   pricecolumn-text: Coût
   subtotal-text: Sous-total
