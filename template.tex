@@ -22,7 +22,6 @@
 
 % TYPOGRAPHY
 %--------------------------------
-\usepackage{fontspec} 
 \usepackage{xunicode}
 \usepackage[
   defaultfam,
@@ -152,6 +151,9 @@
 %--------------------------------
 \usepackage{spreadtab}
 \titlespacing*{\section}{0pt}{3pt}{-7pt} % Remove margin bottom from the title
+\usepackage{currency}
+\DefineCurrency{EUR}{name={euro}, plural={euros}, symbol={\euro}, iso={ EUR}, kind=iso, base=2}
+\DefineCurrency{USD}{name={dollar}, plural={dollars}, symbol={\textdollar}, iso ={USD}, kind=iso, base=2}
 \usepackage{arydshln} % For the dotted line on the table
 \renewcommand{\arraystretch}{1.5} % Apply vertical padding to table cells
 \usepackage{hhline} % For single-cell borders

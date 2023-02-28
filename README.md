@@ -26,7 +26,6 @@
         * [tikz](https://www.ctan.org/pkg/tikz)
     * Text Formatting
         * [xunicode](https://www.ctan.org/pkg/xunicode) supports XETEX’s (and other putative future similar engines’) need for Unicode characters, in a similar way to what the fontenc does for 8-bit (and the like) fonts: convert accent-glyph sequence to a single Unicode character for output.
-        * [fontspec](https://www.ctan.org/pkg/fontspec) provides an automatic and unified interface to feature-rich AAT and OpenType fonts through the NFSS in LATEX running on XETEX or LuaTEX engines.
         * [montserrat](https://www.ctan.org/pkg/montserrat) is a geometric sans-serif typeface designed by Julieta Ulanovsky. It is provided in a total of nine different weights, each having eight figure styles and small caps in both upright and italic shapes.
         * [xcolor](https://www.ctan.org/pkg/xcolor) provides easy driver-independent access to several kinds of colors, tints, shades, tones, and mixes of arbitrary colors by means of color expressions like `color{red!50!green!20!blue}`.
         * [arydshln](https://www.ctan.org/pkg/arydshln) is to draw dash-lines in array/tabular environments. Horizontal lines are drawn by `\hdashline` and `\cdashline` while vertical ones can be specified as a part of the preamble using `:`. The shape of dash-lines may be controlled through style parameters or optional arguments.
@@ -49,7 +48,7 @@
 ## Prerequisites
 
 ```bash
-apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended texlive-fonts-extra
+apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended texlive-fonts-extra texlive-science
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
