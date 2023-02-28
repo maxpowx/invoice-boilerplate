@@ -151,6 +151,8 @@
 %--------------------------------
 \usepackage{spreadtab}
 \titlespacing*{\section}{0pt}{3pt}{-7pt} % Remove margin bottom from the title
+\usepackage{siunitx}
+\sisetup{locale=$lang.locale$}
 \usepackage{currency}
 \DefineCurrency{EUR}{name={euro}, plural={euros}, symbol={\euro}, iso={ EUR}, kind=iso, base=2}
 \DefineCurrency{USD}{name={dollar}, plural={dollars}, symbol={\textdollar}, iso ={USD}, kind=iso, base=2}
@@ -225,7 +227,7 @@ $if(lang.commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
 \begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
   \hdashline[1pt/1pt]
   % header
-  @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{$lang.descriptioncolumn-text$} & @ \textbf{$lang.pricecolumn-text$ $invoice.currency$} \\ \hline
+  @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{$lang.descriptioncolumn-text$} & @ \textbf{$lang.pricecolumn-text$} \\ \hline
   % invoice lines
       $for(service)$ @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos 
         & @ $service.description$ 
@@ -234,16 +236,16 @@ $if(lang.commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
             \scriptsize \item $service.details$ 
           $endfor$ \end{itemize}
         $endif$%
-        & $service.price$\\
+        & \dEUR[kind=symbol]{:={$service.price$}}\\
       $endfor$%
       \noalign{\vskip 2mm} \hline
   % subtotal if vat applies
   $if(from.vat-rate)$
-    @ & @ \multicolumn{1}{r}{$lang.subtotal-text$:}                & :={sum(c1:[0,-1])} \\ \hhline{~~-}
-    @ & @ \multicolumn{1}{r}{$lang.vat-text$ $from.vat-rate$\%:}   & $from.vat-rate$/100*[0,-1] \\ \hhline{~~-}
+    @ & @ \multicolumn{1}{r}{$lang.subtotal-text$:}                & \dEUR[kind=symbol]{:={sum(c1:[0,-1])}} \\ \hhline{~~-}
+    @ & @ \multicolumn{1}{r}{$lang.vat-text$ $from.vat-rate$\%:}   & \dEUR[kind=symbol]{:={$from.vat-rate$/100*[0,-1]}} \\ \hhline{~~-}
   $endif$
   % total
-  @ & @ \multicolumn{1}{r}{\textbf{$lang.total-text$:}}   & \textbf{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(c1:[0,-1])$endif$}} \\ \hhline{~~-}
+  @ & @ \multicolumn{1}{r}{\textbf{$lang.total-text$:}}   & \dEUR[kind=symbol]{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(c1:[0,-1])$endif$}} \\ \hhline{~~-}
 \end{spreadtab}
 
 

@@ -21,6 +21,7 @@ clean :
 # with custom yaml file
 .PHONY: with
 with :
+# https://pandoc.org/MANUAL.html#extension-yaml_metadata_block
 	(echo '---\n#yaml-start' && cat internationalization.yml $(yml) && echo '\n#yaml-end\n---') > tmp.yml
 	if [ -f $(OUTPUT) ]; then echo "file $(OUTPUT) already exists, delete it to regenerate" && exit 1; fi
 	$(TEX_PROCESSOR) tmp.yml -o debug.tex --template=$(TEX_TEMPLATE) $(FLAGS)

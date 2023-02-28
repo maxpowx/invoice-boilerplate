@@ -2,34 +2,36 @@
 # translations
 
 english: &en-GB
+  locale: UK
+  name: english
   commasep: true
   date-text: Date
   invoice-text: Invoice
   invoice-number-text: Invoice Nr.
   descriptioncolumn-text: Description
-  pricecolumn-text: Prices in
+  pricecolumn-text: Cost
   subtotal-text: Sub-total
   vat-text: VAT
   total-text: Total
   payement-due-text: This invoice is due to be paid to
   timesheet-text: Timesheet
   expenses-text: Expenses
-  name: english
 
 french: &fr-BE
+  locale: FR
+  name: français
   commasep: true
   date-text: Date
   invoice-text: Facture
   invoice-number-text: Facture \#
   descriptioncolumn-text: Description
-  pricecolumn-text: Prix en
+  pricecolumn-text: Coût
   subtotal-text: Sous-total
   vat-text: TVA
   total-text: Total
   payement-due-text: Cette facture est à payer à
   timesheet-text: Emploi du temps
   expenses-text: Frais
-  name: français
 
 #########################
 

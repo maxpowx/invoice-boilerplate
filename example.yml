@@ -37,11 +37,11 @@ to:
     country: United Kingdom
 service:
 - description: ACMEVISION Consulting
-  price: 320.00
+  price: 333.3
   details:
     - "Product advices for the movie 'Space Jam: A New Legacy'"
 - description: ACME Promo Pack
-  price: 245.00
+  price: 1001
   details:
     - ACME Hat
     - ACME Marker Pen
