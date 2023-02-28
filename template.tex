@@ -224,17 +224,25 @@ $if(lang.commasep)$\STsetdecimalsep{,}$endif$ % Use comma as decimal separator
 
 \begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
   \hdashline[1pt/1pt]
+  % header
   @ \noalign{\vskip 2mm} \textbf{Pos.} & @ \textbf{$lang.descriptioncolumn-text$} & @ \textbf{$lang.pricecolumn-text$ $invoice.currency$} \\ \hline
+  % invoice lines
       $for(service)$ @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos 
         & @ $service.description$ 
         $if(service.details)$\newline \begin{itemize} 
-          $for(service.details)$\scriptsize \item $service.details$ 
+          $for(service.details)$%
+            \scriptsize \item $service.details$ 
           $endfor$ \end{itemize}
-          $endif$ & $service.price$\\$endfor$ \noalign{\vskip 2mm} \hline
+        $endif$%
+        & $service.price$\\
+      $endfor$%
+      \noalign{\vskip 2mm} \hline
+  % subtotal if vat applies
   $if(from.vat-rate)$
     @ & @ \multicolumn{1}{r}{$lang.subtotal-text$:}                & :={sum(c1:[0,-1])} \\ \hhline{~~-}
     @ & @ \multicolumn{1}{r}{$lang.vat-text$ $from.vat-rate$\%:}   & $from.vat-rate$/100*[0,-1] \\ \hhline{~~-}
   $endif$
+  % total
   @ & @ \multicolumn{1}{r}{\textbf{$lang.total-text$:}}   & \textbf{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(c1:[0,-1])$endif$}} \\ \hhline{~~-}
 \end{spreadtab}
 
