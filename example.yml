@@ -31,7 +31,8 @@ to:
   name: Warner Drive
   vat: GB123456789
   address:
-    line-one: Leavesden
+    line-one: Warner Finance
+    line-two: Leavesden
     city: Hertfordshire
     zip-code: WD25 7LP
     country: United Kingdom

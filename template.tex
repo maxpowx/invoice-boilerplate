@@ -200,14 +200,14 @@ $endif$
 \chapter{$lang.invoice-text$}
 
 \normalsize \sffamily
-\textsc{\textbf{$from.name$}}\\
-$from.vat$\\
-
-\vspace{1em}
-
-\normalsize \sffamily
 \textsc{\textbf{$to.name$}}\\
-$to.vat$\\
+$to.vat$\\[4pt]
+$to.address.line-one$\\
+$if(to.address.line-two)$
+  $to.address.line-two$\\
+$endif$
+$to.address.zip-code$ $to.address.city$\\
+$to.address.country$\\
 
 \vspace{6em}
 
