@@ -48,9 +48,8 @@
 
 ## Prerequisites
 
-```bash
-apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended texlive-fonts-extra texlive-science
-```
+* **Linux**: apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended texlive-fonts-extra texlive-science
+* **MacOS**: brew install texlive pandoc
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -59,9 +58,9 @@ apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended texlive-f
 Copy the yaml template for a new invoice (let us suppose the yaml template is `example.yml`). Modify it appropriatelly and run:
 
 ```bash
-make with yml=inv-2022-09_008.yml
+make with yml=example.yml
 ```
 
-which outputs `inv-2022-09_008.pdf`
+which outputs `example.pdf`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

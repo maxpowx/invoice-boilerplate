@@ -1,6 +1,6 @@
-TEX_PROCESSOR = pandoc
+TEX_PROCESSOR = pandoc --pdf-engine=xelatex --from=commonmark+yaml_metadata_block
 TEX_TEMPLATE = template.tex
-FLAGS = --latex-engine=xelatex
+FLAGS = --verbose --trace=true #--log=$(TEX_TEMPLATE).log #--fail-if-warnings 
 DEFAULT_YAML = example.yml
 
 # substitute ".yml" for output -> src https://www.gnu.org/software/make/manual/html_node/Text-Functions.html
@@ -26,4 +26,5 @@ with :
 	if [ -f $(OUTPUT) ]; then echo "file $(OUTPUT) already exists, delete it to regenerate" && exit 1; fi
 	$(TEX_PROCESSOR) tmp.yml -o debug.tex --template=$(TEX_TEMPLATE) $(FLAGS)
 	$(TEX_PROCESSOR) tmp.yml -o $(OUTPUT) --template=$(TEX_TEMPLATE) $(FLAGS)
-	rm -f tmp.yml debug.tex
+	rm -f tmp.yml 
+	em -f debug.tex
