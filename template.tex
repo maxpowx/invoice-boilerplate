@@ -23,12 +23,10 @@
 % TYPOGRAPHY
 %--------------------------------
 \usepackage{xunicode}
-\usepackage[
-  defaultfam,
-  extralight,
-  tabular,
-  lining
-]{montserrat}
+\usepackage{fontspec}
+\setmainfont{montserrat}
+\setsansfont{montserrat}
+\setmonofont{montserrat}
 \usepackage{fontawesome5}
 \usepackage{longfbox}
 %https://tex.stackexchange.com/questions/571207/error-with-longfbox-package?newreg=e62d0b02a1174e1fac0e66d2ffe42ea9
@@ -129,7 +127,7 @@
 \newcommand*\chapterlabel{}
 \titleformat{\chapter}
   {\gdef\chapterlabel{}
-   \normalfont\sffamily\Huge\bfseries\scshape}
+   \Huge\bfseries\scshape}
   {\gdef\chapterlabel{\thechapter\ }}{0pt}
   {\begin{tikzpicture}[remember picture,overlay]
     \node[yshift=-3cm] at (current page.north west)
