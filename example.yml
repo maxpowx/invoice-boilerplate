@@ -39,10 +39,12 @@ to:
 service:
 - description: ACMEVISION Consulting
   unit-price: 333.3
+  quantity: 2
   details:
     - "Product advices for the movie: Space Jam"
 - description: ACME Promo Pack
   unit-price: 1001
+  quantity: 1
   details:
     - ACME Hat
     - ACME Marker Pen
