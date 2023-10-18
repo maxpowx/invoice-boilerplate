@@ -9,25 +9,29 @@ english: &en-GB
   invoice-text: Invoice
   invoice-number-text: Invoice Nr.
   invoice-line-text: Line
-  descriptioncolumn-text: Description
-  pricecolumn-text: Cost
+  description-column-text: Description
+  unit-price-column-text: Daily rate
+  quantity-column-text: Days
+  total-column-text: Total
   subtotal-text: Sub-total
   vat-text: VAT
   total-text: Total
-  payement-due-text: This invoice is due to be paid to
+  payement-due-text: Payment information
   timesheet-text: Timesheet
   expenses-text: Expenses
 
 french: &fr-BE
   locale: FR
-  name: français
+  name: french
   commasep: true
   date-text: Date
   invoice-text: Facture
   invoice-number-text: Facture \#
   invoice-line-text: Ligne
-  descriptioncolumn-text: Description
-  pricecolumn-text: Coût
+  description-column-text: Description
+  unit-price-column-text: Taux journalier
+  quantity-column-text: Jours
+  total-column-text: Total
   subtotal-text: Sous-total
   vat-text: TVA
   total-text: Total

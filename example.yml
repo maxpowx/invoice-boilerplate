@@ -25,8 +25,8 @@ from:
     country: U.S.A
   bank:
     name: Bank of Tunes
-    iban: XX00 0000 0000 0000
     bic: XXXX US 42
+    iban: XX00 0000 0000 0000
 to:
   name: Warner Drive
   vat: GB123456789
@@ -38,11 +38,11 @@ to:
     country: United Kingdom
 service:
 - description: ACMEVISION Consulting
-  price: 333.3
+  unit-price: 333.3
   details:
-    - "Product advices for the movie 'Space Jam: A New Legacy'"
+    - "Product advices for the movie: Space Jam"
 - description: ACME Promo Pack
-  price: 1001
+  unit-price: 1001
   details:
     - ACME Hat
     - ACME Marker Pen
