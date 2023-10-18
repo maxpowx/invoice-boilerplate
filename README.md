@@ -48,8 +48,18 @@
 
 ## Prerequisites
 
-* **Linux**: apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended texlive-fonts-extra texlive-science
-* **MacOS**: brew install texlive pandoc
+* **Linux**:
+
+    ```bash
+    apt-get install pandoc texlive-xetex lmodern texlive-fonts-recommended texlive-fonts-extra texlive-science
+    ```
+
+* **MacOS**:
+
+    ```bash
+    brew tap homebrew/cask-fonts
+    brew install texlive pandoc font-montserrat
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
