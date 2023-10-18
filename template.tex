@@ -228,12 +228,14 @@ $to.address.country$\\
 \newcounter{pos}
 \setcounter{pos}{0}
 
-\begin{spreadtab}{{tabular}[t t t]{lp{8.2cm}r}}
+\begin{spreadtab}{{tabular}[t t t t t]{lp{6cm}p{1.5cm}p{1.5cm}r}}
   \hdashline[1pt/1pt]
   % header
   @ \noalign{\vskip 2mm} \textbf{$lang.invoice-line-text$}
   & @ \textbf{$lang.description-column-text$}
-  & @ \textbf{$lang.unit-price-column-text$} \\ \hline
+  & @ \textbf{$lang.quantity-column-text$}
+  & @ \textbf{$lang.unit-price-column-text$} 
+  & @ \textbf{$lang.total-column-text$} \\ \hline
   % invoice lines
       $for(service)$
         @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos
@@ -243,21 +245,23 @@ $to.address.country$\\
             \scriptsize \item $service.details$ 
           $endfor$ \end{itemize}
         $endif$%
-        & \dCurrency{$invoice.currency$}{:={$service.unit-price$}}\\
+        & {:={$service.quantity$}}
+        & \dCurrency{$invoice.currency$}{:={$service.unit-price$}}
+        & \dCurrency{$invoice.currency$}{:={[-2,0]*[-1,0]}}\\
       $endfor$%
       \noalign{\vskip 2mm} \hline
   % subtotal if vat applies
   $if(from.vat-rate)$
     % sub-total
-    @ \multicolumn{2}{r}{$lang.subtotal-text$:}
-    & \dCurrency{$invoice.currency$}{:={sum(c1:[0,-1])}} \\ \hhline{~~-}
-    % vat rate
-    @ \multicolumn{2}{r}{$lang.vat-text$ $from.vat-rate$\%:}
-    & \dCurrency{$invoice.currency$}{:={$from.vat-rate$/100*[0,-1]}} \\ \hhline{~~-}
+    @ \multicolumn{4}{r}{$lang.subtotal-text$:}
+    & \dCurrency{$invoice.currency$}{:={sum(e1:[0,-1])}} \\ \hhline{~~~~-}
+    % vat
+    @ \multicolumn{4}{r}{$lang.vat-text$ $from.vat-rate$\%:}
+    & \dCurrency{$invoice.currency$}{:={$from.vat-rate$/100*[0,-1]}} \\ \hhline{~~~~=}
   $endif$
-  % total
-  @ \multicolumn{2}{r}{\textbf{$lang.total-text$:}}
-  & \dCurrency{$invoice.currency$}{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(c1:[0,-1])$endif$}} \\ \hhline{~~-}
+  % total (sub-total + vat if vat applies)
+  @ \multicolumn{4}{r}{\textbf{$lang.total-text$:}}
+  & \dCurrency{$invoice.currency$}{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(e1:[0,-1])$endif$}} \\ \hhline{~~~~-}
 \end{spreadtab}
 
 
