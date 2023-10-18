@@ -249,17 +249,14 @@ $to.address.country$\\
   % subtotal if vat applies
   $if(from.vat-rate)$
     % sub-total
-    @ 
-    & @ \multicolumn{1}{r}{$lang.subtotal-text$:}
+    @ \multicolumn{2}{r}{$lang.subtotal-text$:}
     & \dCurrency{$invoice.currency$}{:={sum(c1:[0,-1])}} \\ \hhline{~~-}
     % vat rate
-    @ 
-    & @ \multicolumn{1}{r}{$lang.vat-text$ $from.vat-rate$\%:}
+    @ \multicolumn{2}{r}{$lang.vat-text$ $from.vat-rate$\%:}
     & \dCurrency{$invoice.currency$}{:={$from.vat-rate$/100*[0,-1]}} \\ \hhline{~~-}
   $endif$
   % total
-  @ 
-  & @ \multicolumn{1}{r}{\textbf{$lang.total-text$:}}
+  @ \multicolumn{2}{r}{\textbf{$lang.total-text$:}}
   & \dCurrency{$invoice.currency$}{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(c1:[0,-1])$endif$}} \\ \hhline{~~-}
 \end{spreadtab}
 
