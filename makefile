@@ -27,4 +27,4 @@ with :
 	$(TEX_PROCESSOR) tmp.yml -o debug.tex --template=$(TEX_TEMPLATE) $(FLAGS)
 	$(TEX_PROCESSOR) tmp.yml -o $(OUTPUT) --template=$(TEX_TEMPLATE) $(FLAGS)
 	rm -f tmp.yml 
-	em -f debug.tex
+	rm -f debug.tex
