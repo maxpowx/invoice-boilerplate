@@ -94,7 +94,7 @@
       %draw,nodes=draw,
       yshift=2cm,
       matrix of nodes, 
-      nodes={minimum height=1.5em, anchor=west, font=\footnotesize},
+      nodes={minimum height=1.8em, anchor=west, font=\footnotesize},
       row 1 column 1/.style={text width=6cm},
       row 1 column 2/.style={text width=6cm},
       row 1 column 3/.style={text width=4cm},
@@ -102,8 +102,8 @@
      ](companydetails) at (current page.south)
      {
       \node(addr1){\makebox[6mm][c]{\faBuilding[regular]}$from.address.line-one$};           \& \node(bank)[xshift=-3mm]{\makebox[6mm][c]{\faUniversity}$from.bank.name$};                                                                                                         \& \node{\makebox[6mm][c]{\faMobile*}{$from.phone$}}; \\
-      \node(addr2)[right=6mm] at (addr1.west) {$from.address.zip-code$ $from.address.city$}; \& \node(bic)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[8mm][c]{\tiny{BIC}}}\makebox[2mm]{}$from.bank.bic$};             \& \node{\makebox[6mm][c]{\faAt}\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
-      \node(addr3)[right=6mm] at (addr1.west) {$from.address.country$};                      \& \node(iban)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[8mm][c]{\tiny{IBAN}}}\makebox[2mm]{}\textbf{$from.bank.iban$}}; \& \node{\makebox[6mm][c]{\faGlobe}\url{$from.online.website$}}; \\
+      \node(addr2)[right=6mm] at (addr1.west) {$from.address.zip-code$ $from.address.city$}; \& \node(bic)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{\tiny{BIC}}}}; \node(bic-code)[anchor=west, right=15mm] at (bank.west){$from.bank.bic$};              \& \node{\makebox[6mm][c]{\faAt}\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
+      \node(addr3)[right=6mm] at (addr1.west) {$from.address.country$};                      \& \node(iban)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{\tiny{IBAN}}}}; \node(iban-code)[anchor=west, right=15mm] at (bank.west){\textbf{$from.bank.iban$}}; \& \node{\makebox[6mm][c]{\faGlobe}\url{$from.online.website$}}; \\
      };
     \fill[mpx-brown] (current page.south west) -- (current page.south east) --
       ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
