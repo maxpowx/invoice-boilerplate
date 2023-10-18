@@ -15,8 +15,8 @@ build :
 .PHONY: clean
 clean :
 	rm -f *.pdf
-	rm -f template.log template.fls template.aux template.fdb_latexmk
-	rm -f tmp.yml debug.tex
+	rm -f *.log *.fls *.aux *.fdb_latexmk
+	rm -f tmp.yml debug.*
 
 # with custom yaml file
 .PHONY: with
@@ -27,4 +27,4 @@ with :
 	$(TEX_PROCESSOR) tmp.yml -o debug.tex --template=$(TEX_TEMPLATE) $(FLAGS)
 	$(TEX_PROCESSOR) tmp.yml -o $(OUTPUT) --template=$(TEX_TEMPLATE) $(FLAGS)
 	rm -f tmp.yml 
-	rm -f debug.tex
+	rm -f debug.*
