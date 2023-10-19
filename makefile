@@ -15,7 +15,7 @@ build :
 .PHONY: clean
 clean :
 	rm -f *.pdf
-	rm -f *.log *.fls *.aux *.fdb_latexmk
+	rm -f *.log *.fls *.aux *.fdb_latexmk *.out *.nav *.snm *.synctex.gz *.toc *.xdv
 	rm -f tmp.yml debug.*
 
 # with custom yaml file

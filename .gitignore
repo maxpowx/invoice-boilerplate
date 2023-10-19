@@ -7,6 +7,12 @@
 !footnote.yml
 
 *.aux
+*.out
+*.nav
+*.snm
+*.synctex.gz
+*.toc
+*.xdv
 *.fdb_latexmk
 *.log
 *.fls
