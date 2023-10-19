@@ -158,7 +158,7 @@
 % The currency package needs and thus loads the packages siunitx, pgfkeys, etoolbox, xparse, expl3, textcomp and eurosym.
 \usepackage{currency}
 \DefineCurrency{EUR}{name={euro}, plural={euros}, symbol={\texteuro}, iso={EUR}, kind=iso, base=2}
-\DefineCurrency{USD}{name={dollar}, plural={dollars}, symbol={\textdollar}, iso={USD}, kind=iso, base=2}
+\DefineCurrency{USD}{name={dollar}, plural={dollars}, symbol={\textdollar}, iso={USD}, kind=iso, base=2, pre=true}
 % currency package issuein applying font: https://github.com/antoinelejay/currency/issues/9
 \CurrencySetup{kind=symbol, font=\fontspec{montserrat}}
 \newcommand{\dCurrency}[2]{\IfStrEqCase{#1}{{EUR}{\dEUR{#2}}}[\dUSD{#2}]}
