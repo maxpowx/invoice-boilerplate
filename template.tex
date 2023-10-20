@@ -58,24 +58,24 @@
 \usetikzlibrary{matrix}
 \newcommand\FooterCompanyDetails{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payment-due-bg) at (current page.south west)
-      {\small \sffamily \textsc{$lang.payment-due-text$}};
+    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payment-info-bg) at (current page.south west)
+      {\small \sffamily \textsc{$lang.payment-info-text$}};
     \fill[mpx-lightgrey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
-      ([xshift=-0.1cm]payment-due-bg.south west) [rounded corners=0.1cm] -- 
-      (payment-due-bg.north west) [rounded corners=0.1cm] -- 
-      (payment-due-bg.north east) [rounded corners=0.1cm] -- 
-      ([xshift=0.1cm]payment-due-bg.south east) -- 
+      ([xshift=-0.1cm]payment-info-bg.south west) [rounded corners=0.1cm] -- 
+      (payment-info-bg.north west) [rounded corners=0.1cm] -- 
+      (payment-info-bg.north east) [rounded corners=0.1cm] -- 
+      ([xshift=0.1cm]payment-info-bg.south east) -- 
       ([yshift=5cm]current page.south east) --
       ([yshift=0.5cm]current page.south east) -- 
       ([yshift=0.5cm]current page.south west) -- cycle;
     \draw[mpx-grey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
-      ([xshift=-0.1cm]payment-due-bg.south west) [rounded corners=0.1cm] -- 
-      (payment-due-bg.north west) [rounded corners=0.1cm] -- 
-      (payment-due-bg.north east) [rounded corners=0.1cm] -- 
-      ([xshift=0.1cm]payment-due-bg.south east) --
+      ([xshift=-0.1cm]payment-info-bg.south west) [rounded corners=0.1cm] -- 
+      (payment-info-bg.north west) [rounded corners=0.1cm] -- 
+      (payment-info-bg.north east) [rounded corners=0.1cm] -- 
+      ([xshift=0.1cm]payment-info-bg.south east) --
       ([yshift=5cm]current page.south east);
-    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payment-due) at (current page.south west)
-      {\small \sffamily \textsc{$lang.payment-due-text$}};
+    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payment-info) at (current page.south west)
+      {\small \sffamily \textsc{$lang.payment-info-text$}};
     \matrix[
       %draw,nodes=draw,
       yshift=4cm,
@@ -261,7 +261,7 @@ $to.address.country$\\
     & \dCurrency{$invoice.currency$}{:={$from.vat-rate$/100*[0,-1]}} \\ \hhline{~~~~=}
   $endif$
   % total (sub-total + vat if vat applies)
-  @ \multicolumn{4}{r}{\textbf{$lang.total-text$:}}
+  @ \multicolumn{4}{r}{\textbf{$lang.balance-due-text$:}}
   & \dCurrency{$invoice.currency$}{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(e1:[0,-1])$endif$}} \\ \hhline{~~~~-}
 \end{spreadtab}
 

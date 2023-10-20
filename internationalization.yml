@@ -15,8 +15,8 @@ english: &en-GB
   total-column-text: Total
   subtotal-text: Sub-total
   vat-text: VAT
-  total-text: Total
-  payment-due-text: Payment information
+  balance-due-text: Balance due
+  payment-info-text: Payment information
   timesheet-text: Timesheet
   expenses-text: Expenses
 
@@ -34,8 +34,8 @@ french: &fr-BE
   total-column-text: Total
   subtotal-text: Sous-total
   vat-text: TVA
-  total-text: Total
-  payment-due-text: Cette facture est à payer à
+  balance-due-text: Total
+  payment-info-text: Cette facture est à payer à
   timesheet-text: Emploi du temps
   expenses-text: Frais
 
