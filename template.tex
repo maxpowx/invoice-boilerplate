@@ -239,10 +239,12 @@ $to.address.country$\\
       $for(service)$
         @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos
         & @ $service.description$ 
-        $if(service.details)$\newline \begin{itemize} 
-          $for(service.details)$%
-            \scriptsize \item $service.details$ 
-          $endfor$ \end{itemize}
+        $if(show-details)$
+          $if(service.details)$\newline \begin{itemize} 
+            $for(service.details)$%
+              \scriptsize \item $service.details$ 
+            $endfor$ \end{itemize}
+          $endif$%
         $endif$%
         & {:={$service.quantity$}}
         & \dCurrency{$invoice.currency$}{:={$service.unit-price$}}

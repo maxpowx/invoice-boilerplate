@@ -2,7 +2,8 @@ geometry: a4paper
 lang: *en-GB
 font-family: montserrat
 font-size: 10pt
-lang: *en-GB
+
+show-details: true
 
 invoice: 
   number: 2020-09_042
