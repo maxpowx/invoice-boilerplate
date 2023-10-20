@@ -4,7 +4,7 @@
 english: &en-GB
   locale: UK
   name: english
-  commasep: true
+  comma-sep: true
   date-text: Date
   invoice-text: Invoice
   invoice-number-text: Invoice Nr.
@@ -16,14 +16,14 @@ english: &en-GB
   subtotal-text: Sub-total
   vat-text: VAT
   total-text: Total
-  payement-due-text: Payment information
+  payment-due-text: Payment information
   timesheet-text: Timesheet
   expenses-text: Expenses
 
 french: &fr-BE
   locale: FR
   name: french
-  commasep: true
+  comma-sep: true
   date-text: Date
   invoice-text: Facture
   invoice-number-text: Facture \#
@@ -35,7 +35,7 @@ french: &fr-BE
   subtotal-text: Sous-total
   vat-text: TVA
   total-text: Total
-  payement-due-text: Cette facture est à payer à
+  payment-due-text: Cette facture est à payer à
   timesheet-text: Emploi du temps
   expenses-text: Frais
 

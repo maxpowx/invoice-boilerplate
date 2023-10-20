@@ -1,7 +1,7 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[$fontsize$, a4paper, svgnames]{report}
+\documentclass[$font-size$, a4paper, svgnames]{report}
 \usepackage{xcolor}
 \definecolor{mpx-brown}{HTML}{534022}
 \definecolor{mpx-grey}{HTML}{BFBFBF}
@@ -58,24 +58,24 @@
 \usetikzlibrary{matrix}
 \newcommand\FooterCompanyDetails{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payementdue-bg) at (current page.south west)
-      {\small \sffamily \textsc{$lang.payement-due-text$}};
+    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payment-due-bg) at (current page.south west)
+      {\small \sffamily \textsc{$lang.payment-due-text$}};
     \fill[mpx-lightgrey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
-      ([xshift=-0.1cm]payementdue-bg.south west) [rounded corners=0.1cm] -- 
-      (payementdue-bg.north west) [rounded corners=0.1cm] -- 
-      (payementdue-bg.north east) [rounded corners=0.1cm] -- 
-      ([xshift=0.1cm]payementdue-bg.south east) -- 
+      ([xshift=-0.1cm]payment-due-bg.south west) [rounded corners=0.1cm] -- 
+      (payment-due-bg.north west) [rounded corners=0.1cm] -- 
+      (payment-due-bg.north east) [rounded corners=0.1cm] -- 
+      ([xshift=0.1cm]payment-due-bg.south east) -- 
       ([yshift=5cm]current page.south east) --
       ([yshift=0.5cm]current page.south east) -- 
       ([yshift=0.5cm]current page.south west) -- cycle;
     \draw[mpx-grey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
-      ([xshift=-0.1cm]payementdue-bg.south west) [rounded corners=0.1cm] -- 
-      (payementdue-bg.north west) [rounded corners=0.1cm] -- 
-      (payementdue-bg.north east) [rounded corners=0.1cm] -- 
-      ([xshift=0.1cm]payementdue-bg.south east) --
+      ([xshift=-0.1cm]payment-due-bg.south west) [rounded corners=0.1cm] -- 
+      (payment-due-bg.north west) [rounded corners=0.1cm] -- 
+      (payment-due-bg.north east) [rounded corners=0.1cm] -- 
+      ([xshift=0.1cm]payment-due-bg.south east) --
       ([yshift=5cm]current page.south east);
-    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payementdue) at (current page.south west)
-      {\small \sffamily \textsc{$lang.payement-due-text$}};
+    \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payment-due) at (current page.south west)
+      {\small \sffamily \textsc{$lang.payment-due-text$}};
     \matrix[
       %draw,nodes=draw,
       yshift=4cm,
@@ -83,9 +83,9 @@
       nodes={minimum height=1.5em, anchor=center},
       row 1 column 1/.style={align=center,font=\large},
       ampersand replacement=\&
-     ](companyinfo) at (current page.south)
+     ](company-info) at (current page.south)
      {
-      \node{\textcolor{mpx-blue}{\textbf{$from.name$}} \textcolor{mpx-brown}{$from.legalform$}}; \\
+      \node{\textcolor{mpx-blue}{\textbf{$from.name$}} \textcolor{mpx-brown}{$from.legal-form$}}; \\
       \node{$from.vat$}; \\
      };
      \matrix[
@@ -97,7 +97,7 @@
       row 1 column 2/.style={text width=6cm},
       row 1 column 3/.style={text width=4cm},
       ampersand replacement=\&
-     ](companydetails) at (current page.south)
+     ](company-details) at (current page.south)
      {
       \node(addr1){\makebox[6mm][c]{\faBuilding[regular]}$from.address.line-one$};           \& \node(bank)[xshift=-3mm]{\makebox[6mm][c]{\faUniversity}$from.bank.name$};                                                                                                         \& \node{\makebox[6mm][c]{\faMobile*}{$from.phone$}}; \\
       \node(addr2)[right=6mm] at (addr1.west) {$from.address.zip-code$ $from.address.city$}; \& \node(bic)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{\tiny{BIC}}}}; \node(bic-code)[anchor=west, right=15mm] at (bank.west){$from.bank.bic$};              \& \node{\makebox[6mm][c]{\faAt}\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
@@ -268,7 +268,7 @@ $to.address.country$\\
 
 \sffamily
 \small
-$closingnote$
+$closing-note$
 
 %\chapter{$lang.timesheet-text$}
 %timesheet

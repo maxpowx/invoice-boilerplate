@@ -1,5 +1,5 @@
 geometry: a4paper
-fontsize: 10pt
+font-size: 10pt
 lang: *en-GB
 
 invoice: 
@@ -9,7 +9,7 @@ invoice:
   payment-due: 15
 from:
   name: Acme Rocket-Powered Products
-  legalform: Inc.
+  legal-form: Inc.
   vat: XX-XXXXXXX
   vat-rate: 19
   phone: 555-555555
@@ -50,7 +50,7 @@ service:
     - ACME Marker Pen
     - ACME Bird Seeds
 
-closingnote: |
+closing-note: |
   Space Jam: A New Legacy (also known as Space Jam 2) is a 2021 American live-action/animated sports comedy film
    The film also features the Looney Tunes characters such as Bugs Bunny, Lola Bunny, and Daffy Duck. 
    It is Warner Animation Group's ninth feature film.
