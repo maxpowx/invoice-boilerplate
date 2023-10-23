@@ -13,6 +13,8 @@
 %--------------------------------
 \usepackage{geometry}
 \geometry{$geometry$}
+\usepackage{adjustbox}
+\usepackage{tabularx, colortbl}
 
 % No page numbers
 \pagenumbering{gobble}
@@ -221,31 +223,57 @@ $endif$
 
 \chapter{$lang.invoice-text$}
 
-\normalsize \sffamily
-\textsc{\textbf{$to.name$}}\\
-$to.vat$\\[4pt]
-$to.address.line-one$\\
-$if(to.address.line-two)$
-  $to.address.line-two$\\
-$endif$
-$to.address.zip-code$ $to.address.city$\\
-$to.address.country$\\
+%$lang.date-text$: $if(invoice.date-value)$$invoice.date-value$$else$\mydate$endif$
+%\section*{\textbf{$lang.invoice-number-text$ $invoice.number$}}
 
-\vspace{6em}
+\begin{minipage}[t]{0.4\linewidth}
+  \vspace{0pt}
+  \textcolor{mpx-blue}{\textsc{\textbf{Bill to}}}
+  \textcolor{mpx-lightgrey}{\rule{\linewidth}{2pt}}
 
-\begin{flushright}
-  \small
-  $lang.date-text$: $if(invoice.date-value)$$invoice.date-value$$else$\mydate$endif$
-\end{flushright}
+  \vspace{0pt}
+  \linespread{1.5}\selectfont
 
-\vspace{1em}
+  \textbf{$to.name$}\\
+  $to.vat$\\
+  $to.address.line-one$\\
+  $if(to.address.line-two)$
+    $to.address.line-two$\\
+  $endif$
+  $to.address.zip-code$ $to.address.city$\\
+  $to.address.country$\\
+\end{minipage}%
+%
+\hspace{1cm}
+%
 
+$if(purchase.metadata)$%
+  \begin{minipage}[t]{0.6\linewidth}
+    \vspace{0pt}
+    \textcolor{mpx-blue}{\textsc{\textbf{Purchase References}}}
+    \textcolor{mpx-lightgrey}{\rule{\linewidth}{2pt}}
 
-\section*{\textbf{$lang.invoice-number-text$ $invoice.number$}}
-\footnotesize
+    \vspace{6pt}
+    
+    $if(purchase.metadata)$%
+      \small\color{mpx-blue}
+      $for(purchase.metadata/pairs)$%
+        \setlength{\extrarowheight}{0pt}
+        \setlength{\tabcolsep}{4pt}
+        \begin{tabularx}{\linewidth}{@{}l X@{}}
+          \color{mpx-grey}$it.key$ | & \maxsizebox{\linewidth}{!}{$it.value$}
+        \end{tabularx}%
+      $endfor$%
+    $endif$%
+  \end{minipage}
+$endif$%
+
+\vspace{4em}
+
 \newcounter{pos}
 \setcounter{pos}{0}
 
+\small
 \begin{spreadtab}{{tabular}[t]{lp{7cm}crr}}
   \hdashline[1pt/1pt]
   % header
@@ -271,7 +299,7 @@ $to.address.country$\\
               \scriptsize \color{mpx-blue}
               \begin{itemize}[leftmargin=0pt, label={}, labelsep=0pt, itemsep=2pt, parsep=0pt]
                 $for(service.metadata/pairs)$%
-                  \item \color{mpx-grey}$it.key$: \color{mpx-blue}$it.value$
+                  \item \color{mpx-grey}$it.key$ | \color{mpx-blue}$it.value$
                 $endfor$%
               \end{itemize} 
             \end{blockquote}
@@ -296,8 +324,7 @@ $to.address.country$\\
   & \dCurrency{$invoice.currency$}{:={$if(from.vat-rate)$[0,-1]+[0,-2]$else$sum(e1:[0,-1])$endif$}} \\ \hhline{~~~~-}
 \end{spreadtab}
 
-
-\vspace{15mm}
+\vspace{4em}
 
 \sffamily
 \small
