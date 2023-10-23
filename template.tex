@@ -234,14 +234,17 @@ $endif$
   \vspace{0pt}
   \linespread{1.5}\selectfont
 
-  \textbf{$to.name$}\\
-  $to.vat$\\
-  $to.address.line-one$\\
+  
+  \textcolor{mpx-blue}{\textbf{$to.name$}} \textcolor{mpx-brown}{$to.legal-form$} \\
+  \scriptsize\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{VAT}} $to.vat$\\
+  \vspace{6pt}
+  \small
+  \makebox[6mm][c]{\faBuilding[regular]}$to.address.line-one$\\
   $if(to.address.line-two)$
-    $to.address.line-two$\\
+    \makebox[6mm][c]{}$to.address.line-two$\\
   $endif$
-  $to.address.zip-code$ $to.address.city$\\
-  $to.address.country$\\
+  \makebox[6mm][c]{}$to.address.zip-code$ $to.address.city$\\
+  \makebox[6mm][c]{}$to.address.country$\\
 \end{minipage}%
 %
 \hspace{1cm}
