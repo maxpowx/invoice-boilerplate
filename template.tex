@@ -39,8 +39,9 @@
 
 \newcommand*\HeaderDocumentDetails{%
   \begin{tikzpicture}[remember picture,overlay]
-    \fill[mpx-brown] (current page.north west) -- (current page.north east) --
-      ([yshift=-0.2cm]current page.north east) -- ([yshift=-0.2cm]current page.north west) -- cycle;
+    \shade[top color=mpx-brown!100, middle color=mpx-brown!100, bottom color=mpx-lightgrey!100]
+      (current page.north west) -- (current page.north east) --
+      ([yshift=-0.4cm]current page.north east) -- ([yshift=-0.4cm]current page.north west) -- cycle;
     \fill[mpx-lightgrey] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
       ([yshift=-3cm]current page.north east) -- ([yshift=-3cm]current page.north west) -- cycle;
   \end{tikzpicture}%
@@ -48,7 +49,8 @@
 
 \newcommand*\HeaderSimple{%
   \begin{tikzpicture}[remember picture,overlay]
-    \fill[mpx-brown] (current page.north west) -- (current page.north east) --
+    \shade[top color=mpx-brown!100, middle color=mpx-brown!100, bottom color=mpx-lightgrey!100]
+      (current page.north west) -- (current page.north east) --
       ([yshift=-0.2cm]current page.north east) -- ([yshift=-0.2cm]current page.north west) -- cycle;
     \fill[mpx-lightgrey] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
       ([yshift=-2cm]current page.north east) -- ([yshift=-2cm]current page.north west) -- cycle;
@@ -103,8 +105,9 @@
       \node(addr2)[right=6mm] at (addr1.west) {$from.address.zip-code$ $from.address.city$}; \& \node(bic)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{\tiny{BIC}}}}; \node(bic-code)[anchor=west, right=15mm] at (bank.west){$from.bank.bic$};              \& \node{\makebox[6mm][c]{\faAt}\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
       \node(addr3)[right=6mm] at (addr1.west) {$from.address.country$};                      \& \node(iban)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{\tiny{IBAN}}}}; \node(iban-code)[anchor=west, right=15mm] at (bank.west){\textbf{$from.bank.iban$}}; \& \node{\makebox[6mm][c]{\faGlobe}\url{$from.online.website$}}; \\
      };
-    \fill[mpx-brown] (current page.south west) -- (current page.south east) --
-      ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
+     \shade[top color=mpx-lightgrey!100, middle color=mpx-brown!100, bottom color=mpx-brown!100]
+            (current page.south west) -- (current page.south east) --
+            ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
   \end{tikzpicture}%
 }
 
@@ -112,8 +115,9 @@
   \begin{tikzpicture}[remember picture,overlay]
     \fill[mpx-lightgrey] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east) --
       ([yshift=2cm]current page.south east) -- ([yshift=2cm]current page.south west) -- cycle;
-    \fill[mpx-brown] (current page.south west) -- (current page.south east) --
-      ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
+      \shade[top color=mpx-brown!100, middle color=mpx-brown!100, bottom color=mpx-lightgrey!100] % end color of the gradient(current page.south west) -- (current page.south east) --
+            (current page.south west) -- (current page.south east) --
+            ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
     \node [yshift=1.25cm] at (current page.south)
       {\small \sffamily \textsc{$from.name$}};
   \end{tikzpicture}%
