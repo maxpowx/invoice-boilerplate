@@ -169,6 +169,21 @@
 \setlist[itemize]{leftmargin=0.5cm} % Reduce list left indent
 \setlength{\tabcolsep}{9pt} % Larger gutter between columns
 
+% BLOCK QUOTE CUSTOMIZATION
+%--------------------------------
+\usepackage{mdframed}  % Load the package
+\newmdenv[
+  usetwoside=false,
+  hidealllines=true,
+  leftline=true,
+  linewidth=1pt,  % Adjust the thickness of the line
+  linecolor=mpx-lightblue,  % Change to whatever color you prefer
+  innertopmargin=3pt,
+  innerbottommargin=3pt,
+  leftmargin=12pt,
+  skipabove=4pt,
+  skipbelow=\baselineskip
+]{blockquote}
 
 % LANGUAGE
 %--------------------------------
@@ -244,6 +259,18 @@ $to.address.country$\\
             $for(service.details)$%
               \scriptsize \item $service.details$ 
             $endfor$ \end{itemize}
+          $endif$%
+        $endif$%
+        $if(show-metadata)$
+          $if(service.metadata)$%
+            \begin{blockquote} 
+              \scriptsize \color{mpx-blue}
+              \begin{itemize}[leftmargin=0pt, label={}, labelsep=0pt, itemsep=2pt, parsep=0pt]
+                $for(service.metadata/pairs)$%
+                  \item \color{mpx-grey}$it.key$: \color{mpx-blue}$it.value$
+                $endfor$%
+              \end{itemize} 
+            \end{blockquote}
           $endif$%
         $endif$%
         & {:={$service.quantity$}}
