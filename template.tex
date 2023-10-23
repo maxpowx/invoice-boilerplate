@@ -3,11 +3,21 @@
 
 \documentclass[$font-size$, a4paper, svgnames]{report}
 \usepackage{xcolor}
-\definecolor{mpx-brown}{HTML}{534022}
-\definecolor{mpx-grey}{HTML}{BFBFBF}
-\definecolor{mpx-lightgrey}{HTML}{F3F3F3}
-\definecolor{mpx-blue}{HTML}{4A5B72}
-\definecolor{mpx-lightblue}{HTML}{DCDEE0}
+\definecolor{light-background}{HTML}{FFFFFF}
+\definecolor{light-fooder-bg}{HTML}{F3F3F3}
+\definecolor{light-fooder-edge}{HTML}{534022}
+\definecolor{light-text-dark}{HTML}{000000}
+\definecolor{light-text-accent1}{HTML}{4A5B72}
+\definecolor{light-text-accent2}{HTML}{534022}
+\definecolor{light-text-light}{HTML}{BFBFBF}
+\definecolor{light-box-border-lighter}{HTML}{F3F3F3}
+\definecolor{light-box-border-light}{HTML}{BFBFBF}
+\definecolor{light-box-border-accent}{HTML}{DCDEE0}
+\definecolor{light-box-bg}{HTML}{4A5B72}
+\definecolor{light-link}{HTML}{4A5B72}
+
+\pagecolor{light-background} % Set the page background color
+\color{light-text-dark} % Set the text color
 
 % LAYOUT
 %--------------------------------
@@ -41,20 +51,20 @@
 
 \newcommand*\HeaderDocumentDetails{%
   \begin{tikzpicture}[remember picture,overlay]
-    \shade[top color=mpx-brown!100, middle color=mpx-brown!100, bottom color=mpx-lightgrey!100]
+    \shade[top color=light-fooder-edge!100, middle color=light-fooder-edge!100, bottom color=light-fooder-bg!100]
       (current page.north west) -- (current page.north east) --
       ([yshift=-0.4cm]current page.north east) -- ([yshift=-0.4cm]current page.north west) -- cycle;
-    \fill[mpx-lightgrey] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
+    \fill[light-fooder-bg] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
       ([yshift=-3cm]current page.north east) -- ([yshift=-3cm]current page.north west) -- cycle;
   \end{tikzpicture}%
 }
 
 \newcommand*\HeaderSimple{%
   \begin{tikzpicture}[remember picture,overlay]
-    \shade[top color=mpx-brown!100, middle color=mpx-brown!100, bottom color=mpx-lightgrey!100]
+    \shade[top color=light-fooder-edge!100, middle color=light-fooder-edge!100, bottom color=light-fooder-bg!100]
       (current page.north west) -- (current page.north east) --
       ([yshift=-0.2cm]current page.north east) -- ([yshift=-0.2cm]current page.north west) -- cycle;
-    \fill[mpx-lightgrey] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
+    \fill[light-fooder-bg] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
       ([yshift=-2cm]current page.north east) -- ([yshift=-2cm]current page.north west) -- cycle;
   \end{tikzpicture}%
 }
@@ -64,7 +74,7 @@
   \begin{tikzpicture}[remember picture,overlay]
     \node[yshift=5cm,xshift=1cm,anchor=south west,inner sep=3pt](payment-info-bg) at (current page.south west)
       {\small \sffamily \textsc{$lang.payment-info-text$}};
-    \fill[mpx-lightgrey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
+    \fill[light-fooder-bg] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
       ([xshift=-0.1cm]payment-info-bg.south west) [rounded corners=0.1cm] -- 
       (payment-info-bg.north west) [rounded corners=0.1cm] -- 
       (payment-info-bg.north east) [rounded corners=0.1cm] -- 
@@ -72,7 +82,7 @@
       ([yshift=5cm]current page.south east) --
       ([yshift=0.5cm]current page.south east) -- 
       ([yshift=0.5cm]current page.south west) -- cycle;
-    \draw[mpx-grey] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
+    \draw[light-box-border-accent] ([yshift=5cm]current page.south west) [rounded corners=0.1cm] -- 
       ([xshift=-0.1cm]payment-info-bg.south west) [rounded corners=0.1cm] -- 
       (payment-info-bg.north west) [rounded corners=0.1cm] -- 
       (payment-info-bg.north east) [rounded corners=0.1cm] -- 
@@ -89,7 +99,7 @@
       ampersand replacement=\&
      ](company-info) at (current page.south)
      {
-      \node{\textcolor{mpx-blue}{\textbf{$from.name$}} \textcolor{mpx-brown}{$from.legal-form$}}; \\
+      \node{\textcolor{light-text-accent1}{\textbf{$from.name$}} \textcolor{light-text-accent2}{$from.legal-form$}}; \\
       \node{$from.vat$}; \\
      };
      \matrix[
@@ -104,10 +114,10 @@
      ](company-details) at (current page.south)
      {
       \node(addr1){\makebox[6mm][c]{\faBuilding[regular]}$from.address.line-one$};           \& \node(bank)[xshift=-3mm]{\makebox[6mm][c]{\faUniversity}$from.bank.name$};                                                                                                         \& \node{\makebox[6mm][c]{\faMobile*}{$from.phone$}}; \\
-      \node(addr2)[right=6mm] at (addr1.west) {$from.address.zip-code$ $from.address.city$}; \& \node(bic)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{\tiny{BIC}}}}; \node(bic-code)[anchor=west, right=15mm] at (bank.west){$from.bank.bic$};              \& \node{\makebox[6mm][c]{\faAt}\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
-      \node(addr3)[right=6mm] at (addr1.west) {$from.address.country$};                      \& \node(iban)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{\tiny{IBAN}}}}; \node(iban-code)[anchor=west, right=15mm] at (bank.west){\textbf{$from.bank.iban$}}; \& \node{\makebox[6mm][c]{\faGlobe}\url{$from.online.website$}}; \\
+      \node(addr2)[right=6mm] at (addr1.west) {$from.address.zip-code$ $from.address.city$}; \& \node(bic)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=light-box-border-light]{\makebox[6mm][c]{\tiny{BIC}}}}; \node(bic-code)[anchor=west, right=15mm] at (bank.west){$from.bank.bic$};              \& \node{\makebox[6mm][c]{\faAt}\href{mailto:$from.online.e-mail$}{$from.online.e-mail$}}; \\
+      \node(addr3)[right=6mm] at (addr1.west) {$from.address.country$};                      \& \node(iban)[anchor=west, right=4mm] at (bank.west){\lfbox[border-radius=0.5ex,border-color=light-box-border-light]{\makebox[6mm][c]{\tiny{IBAN}}}}; \node(iban-code)[anchor=west, right=15mm] at (bank.west){\textbf{$from.bank.iban$}}; \& \node{\makebox[6mm][c]{\faGlobe}\url{$from.online.website$}}; \\
      };
-     \shade[top color=mpx-lightgrey!100, middle color=mpx-brown!100, bottom color=mpx-brown!100]
+     \shade[top color=light-fooder-bg!100, middle color=light-fooder-edge!100, bottom color=light-fooder-edge!100]
             (current page.south west) -- (current page.south east) --
             ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
   \end{tikzpicture}%
@@ -115,9 +125,9 @@
 
 \newcommand\FooterSimple{%
   \begin{tikzpicture}[remember picture,overlay]
-    \fill[mpx-lightgrey] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east) --
+    \fill[light-fooder-bg] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east) --
       ([yshift=2cm]current page.south east) -- ([yshift=2cm]current page.south west) -- cycle;
-      \shade[top color=mpx-brown!100, middle color=mpx-brown!100, bottom color=mpx-lightgrey!100] % end color of the gradient(current page.south west) -- (current page.south east) --
+      \shade[top color=light-fooder-edge!100, middle color=light-fooder-edge!100, bottom color=light-fooder-bg!100] % end color of the gradient(current page.south west) -- (current page.south east) --
             (current page.south west) -- (current page.south east) --
             ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
     \node [yshift=1.25cm] at (current page.south)
@@ -140,8 +150,8 @@
       {\begin{tikzpicture}[remember picture, overlay]
         \node[anchor=east,xshift=.9\paperwidth,rectangle,
               rounded corners=3pt,inner sep=11pt,
-              fill=mpx-blue]
-              {\color{white}#1};
+              fill=light-box-bg]
+              {\color{light-background}#1};
        \end{tikzpicture}
       };
     \end{tikzpicture}
@@ -183,7 +193,7 @@
   hidealllines=true,
   leftline=true,
   linewidth=1pt,  % Adjust the thickness of the line
-  linecolor=mpx-lightblue,  % Change to whatever color you prefer
+  linecolor=light-box-border-accent,  % Change to whatever color you prefer
   innertopmargin=3pt,
   innerbottommargin=3pt,
   leftmargin=12pt,
@@ -206,10 +216,10 @@ $endif$
   pdfauthor={$from.name$},
   pdfsubject=$lang.invoice-number-text$ $invoice.number$,
   pdftitle=$lang.invoice-number-text$ $invoice.number$,
-  linkcolor=mpx-blue,
-  citecolor=mpx-blue,
-  filecolor=mpx-brown,
-  urlcolor=mpx-blue
+  linkcolor=light-link,
+  citecolor=light-link,
+  filecolor=light-link,
+  urlcolor=light-link
 }
 \urlstyle{same}
 
@@ -228,15 +238,14 @@ $endif$
 
 \begin{minipage}[t]{0.4\linewidth}
   \vspace{0pt}
-  \textcolor{mpx-blue}{\textsc{\textbf{Bill to}}}
-  \textcolor{mpx-lightgrey}{\rule{\linewidth}{2pt}}
+  \textcolor{light-text-accent1}{\textsc{\textbf{Bill to}}}
+  \textcolor{light-box-border-lighter}{\rule{\linewidth}{2pt}}
 
   \vspace{0pt}
   \linespread{1.5}\selectfont
 
-  
-  \textcolor{mpx-blue}{\textbf{$to.name$}} \textcolor{mpx-brown}{$to.legal-form$} \\
-  \scriptsize\lfbox[border-radius=0.5ex,border-color=mpx-lightblue]{\makebox[6mm][c]{VAT}} $to.vat$\\
+  \textcolor{light-text-accent1}{\textbf{$to.name$}} \textcolor{light-text-accent2}{$to.legal-form$} \\
+  \scriptsize\lfbox[border-radius=0.5ex,border-color=light-box-border-accent]{\makebox[6mm][c]{VAT}} $to.vat$\\
   \vspace{6pt}
   \small
   \makebox[6mm][c]{\faBuilding[regular]}$to.address.line-one$\\
@@ -252,18 +261,18 @@ $endif$
 $if(purchase.metadata)$%
   \begin{minipage}[t]{0.6\linewidth}
     \vspace{0pt}
-    \textcolor{mpx-blue}{\textsc{\textbf{Purchase References}}}
-    \textcolor{mpx-lightgrey}{\rule{\linewidth}{2pt}}
+    \textcolor{light-text-accent1}{\textsc{\textbf{Purchase References}}}
+    \textcolor{light-box-border-lighter}{\rule{\linewidth}{2pt}}
 
     \vspace{6pt}
     
     $if(purchase.metadata)$%
-      \small\color{mpx-blue}
+      \small\color{light-text-accent1}
       $for(purchase.metadata/pairs)$%
         \setlength{\extrarowheight}{0pt}
         \setlength{\tabcolsep}{4pt}
         \begin{tabularx}{\linewidth}{@{}l X@{}}
-          \color{mpx-grey}$it.key$ | & \maxsizebox{\linewidth}{!}{$it.value$}
+          \color{light-text-light}$it.key$ | & \maxsizebox{\linewidth}{!}{$it.value$}
         \end{tabularx}%
       $endfor$%
     $endif$%
@@ -298,10 +307,10 @@ $endif$%
         $if(show-metadata)$
           $if(service.metadata)$%
             \begin{blockquote} 
-              \scriptsize \color{mpx-blue}
+              \scriptsize \color{light-text-accent1}
               \begin{itemize}[leftmargin=0pt, label={}, labelsep=0pt, itemsep=2pt, parsep=0pt]
                 $for(service.metadata/pairs)$%
-                  \item \color{mpx-grey}$it.key$ | \color{mpx-blue}$it.value$
+                  \item \color{light-text-light}$it.key$ | \color{light-text-accent1}$it.value$
                 $endfor$%
               \end{itemize} 
             \end{blockquote}
