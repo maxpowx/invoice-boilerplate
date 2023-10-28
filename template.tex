@@ -345,18 +345,18 @@ $endif$%
 \small
 $closing-note$
 
-% Add timesheet page if timesheet given in the config
+% Add time-sheet page if time-sheet given in the config
 $if(service.timesheet)$
   \chapter{$lang.timesheet-text$}
   \begin{spreadtab}{{tabular}[t]{llcrr}}
     \hdashline[1pt/1pt]
-    % header
+    % time-sheet header
     @ \noalign{\vskip 2mm} \textbf{$lang.timesheet-date-text$}
     & @ \textbf{$lang.description-column-text$}
     & @ \textbf{$lang.quantity-column-text$}
     & @ \textbf{$lang.unit-price-column-text$} 
     & @ \textbf{$lang.total-column-text$} \\ \hline
-    % invoice lines
+    % time-sheet lines
         $for(service.timesheet)$
           @ \DTMdate{$it.date$}
           & @ $it.account$ 
@@ -365,13 +365,15 @@ $if(service.timesheet)$
           & \dCurrency{$invoice.currency$}{:={[-2,0]*[-1,0]}}\\
         $endfor$%
         \noalign{\vskip 2mm} \hline
-    % total
+    % time-sheet totals
     @ \multicolumn{2}{r}{$lang.timesheet-total-text$:}
     & {:={sum(c1:[0,-1])}}
     & @
     & \dCurrency{$invoice.currency$}{:={sum(e1:[0,-1])}} \\ \hhline{~~~~-}
   \end{spreadtab}
 $endif$
+
 %\chapter{$lang.expenses-text$}
 %expenses
+
 \end{document}
