@@ -206,6 +206,10 @@
 $if(lang)$
 \usepackage{polyglossia}
 \setmainlanguage{$lang.name$}
+\usepackage[useregional=text, calc]{datetime2}
+\selectlanguage{$lang.name$}
+\DTMsetdatestyle{default} 
+
 $endif$
 
 % PDF SETUP
@@ -341,8 +345,33 @@ $endif$%
 \small
 $closing-note$
 
-%\chapter{$lang.timesheet-text$}
-%timesheet
+% Add timesheet page if timesheet given in the config
+$if(service.timesheet)$
+  \chapter{$lang.timesheet-text$}
+  \begin{spreadtab}{{tabular}[t]{llcrr}}
+    \hdashline[1pt/1pt]
+    % header
+    @ \noalign{\vskip 2mm} \textbf{$lang.timesheet-date-text$}
+    & @ \textbf{$lang.description-column-text$}
+    & @ \textbf{$lang.quantity-column-text$}
+    & @ \textbf{$lang.unit-price-column-text$} 
+    & @ \textbf{$lang.total-column-text$} \\ \hline
+    % invoice lines
+        $for(service.timesheet)$
+          @ \DTMdate{$it.date$}
+          & @ $it.account$ 
+          & $if(it.hours)$ {:={$it.hours$/8}} $else$ {:={1}} $endif$%
+          & {:={950}}
+          & \dCurrency{$invoice.currency$}{:={[-2,0]*[-1,0]}}\\
+        $endfor$%
+        \noalign{\vskip 2mm} \hline
+    % total
+    @ \multicolumn{2}{r}{$lang.timesheet-total-text$:}
+    & {:={sum(c1:[0,-1])}}
+    & @
+    & \dCurrency{$invoice.currency$}{:={sum(e1:[0,-1])}} \\ \hhline{~~~~-}
+  \end{spreadtab}
+$endif$
 %\chapter{$lang.expenses-text$}
 %expenses
 \end{document}

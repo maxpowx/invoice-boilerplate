@@ -18,6 +18,8 @@ english: &en-GB
   balance-due-text: Balance due
   payment-info-text: Payment information
   timesheet-text: Timesheet
+  timesheet-date-text: Date
+  timesheet-total-text: Total
   expenses-text: Expenses
 
 french: &fr-BE
@@ -37,6 +39,8 @@ french: &fr-BE
   balance-due-text: Total
   payment-info-text: Cette facture est à payer à
   timesheet-text: Emploi du temps
+  timesheet-date-text: Date
+  timesheet-total-text: Total
   expenses-text: Frais
 
 #########################
