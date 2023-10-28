@@ -40,18 +40,21 @@ to:
     zip-code: WD25 7LP
     country: United Kingdom
 service:
-- description: ACMEVISION Consulting
-  unit-price: 333.3
-  quantity: 2
-  details:
-    - "Product advices for the movie: Space Jam"
-- description: ACME Promo Pack
-  unit-price: 1001
-  quantity: 1
-  details:
-    - ACME Hat
-    - ACME Marker Pen
-    - ACME Bird Seeds
+  line:
+    ACMEVISION:
+      description: ACMEVISION Consulting
+      unit-price: 333.3
+      quantity: 2
+      details:
+        - "Product advices for the movie: Space Jam"
+    ACMEPP:
+      description: ACME Promo Pack
+      unit-price: 1001
+      quantity: 1
+      details:
+        - ACME Hat
+        - ACME Marker Pen
+        - ACME Bird Seeds
 
 closing-note: |
   Space Jam: A New Legacy (also known as Space Jam 2) is a 2021 American live-action/animated sports comedy film

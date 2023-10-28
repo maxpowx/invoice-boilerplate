@@ -294,30 +294,30 @@ $endif$%
   & @ \textbf{$lang.unit-price-column-text$} 
   & @ \textbf{$lang.total-column-text$} \\ \hline
   % invoice lines
-      $for(service)$
+      $for(service.line/pairs)$
         @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos
-        & @ $service.description$ 
+        & @ $it.value.description$ 
         $if(show-details)$
-          $if(service.details)$\newline \begin{itemize} 
-            $for(service.details)$%
-              \scriptsize \item $service.details$ 
+          $if(it.value.details)$\newline \begin{itemize} 
+            $for(it.value.details)$%
+              \footnotesize \item $it$ 
             $endfor$ \end{itemize}
           $endif$%
         $endif$%
         $if(show-metadata)$
-          $if(service.metadata)$%
+          $if(it.value.metadata)$%
             \begin{blockquote} 
-              \scriptsize \color{light-text-accent1}
+              \footnotesize \color{light-text-accent1}
               \begin{itemize}[leftmargin=0pt, label={}, labelsep=0pt, itemsep=2pt, parsep=0pt]
-                $for(service.metadata/pairs)$%
+                $for(it.value.metadata/pairs)$%
                   \item \color{light-text-light}$it.key$ | \color{light-text-accent1}$it.value$
                 $endfor$%
               \end{itemize} 
             \end{blockquote}
           $endif$%
         $endif$%
-        & {:={$service.quantity$}}
-        & \dCurrency{$invoice.currency$}{:={$service.unit-price$}}
+        & {:={$it.value.quantity$}}
+        & \dCurrency{$invoice.currency$}{:={$it.value.unit-price$}}
         & \dCurrency{$invoice.currency$}{:={[-2,0]*[-1,0]}}\\
       $endfor$%
       \noalign{\vskip 2mm} \hline
