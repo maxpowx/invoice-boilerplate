@@ -63,7 +63,7 @@
   \begin{tikzpicture}[remember picture,overlay]
     \shade[top color=light-fooder-edge!100, middle color=light-fooder-edge!100, bottom color=light-fooder-bg!100]
       (current page.north west) -- (current page.north east) --
-      ([yshift=-0.2cm]current page.north east) -- ([yshift=-0.2cm]current page.north west) -- cycle;
+      ([yshift=-0.4cm]current page.north east) -- ([yshift=-0.4cm]current page.north west) -- cycle;
     \fill[light-fooder-bg] ([yshift=-0.2cm]current page.north west) -- ([yshift=-0.2cm]current page.north east) -- 
       ([yshift=-2cm]current page.north east) -- ([yshift=-2cm]current page.north west) -- cycle;
   \end{tikzpicture}%
@@ -127,17 +127,23 @@
   \begin{tikzpicture}[remember picture,overlay]
     \fill[light-fooder-bg] ([yshift=0.5cm]current page.south west) -- ([yshift=0.5cm]current page.south east) --
       ([yshift=2cm]current page.south east) -- ([yshift=2cm]current page.south west) -- cycle;
-      \shade[top color=light-fooder-edge!100, middle color=light-fooder-edge!100, bottom color=light-fooder-bg!100] % end color of the gradient(current page.south west) -- (current page.south east) --
-            (current page.south west) -- (current page.south east) --
-            ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
+      \shade[top color=light-fooder-bg!100, middle color=light-fooder-edge!100, bottom color=light-fooder-edge!100]
+             (current page.south west) -- (current page.south east) --
+             ([yshift=0.5cm]current page.south east) -- ([yshift=0.5cm]current page.south west) -- cycle;
     \node [yshift=1.25cm] at (current page.south)
-      {\small \sffamily \textsc{$from.name$}};
+      {\small \sffamily \textcolor{light-text-accent1}{\textbf{$from.name$}} \textcolor{light-text-accent2}{$from.legal-form$}};
   \end{tikzpicture}%
 }
 
 \usepackage{atbegshi}
 \pagestyle{empty}
-%\AtBeginShipout{\AtBeginShipoutAddToBox{\HeaderSimple\FooterSimple}}
+
+\newcounter{pagecounter}
+\AtBeginShipout{
+  \ifnum\value{pagecounter}>0
+    \AtBeginShipoutAddToBox{\HeaderSimple\FooterSimple}
+  \fi
+  \stepcounter{pagecounter}}
 \AtBeginShipoutFirst{\HeaderDocumentDetails\FooterCompanyDetails}
 
 \newcommand*\chapterlabel{}
@@ -146,7 +152,8 @@
    \Huge\bfseries\scshape}
   {\gdef\chapterlabel{\thechapter\ }}{0pt}
   {\begin{tikzpicture}[remember picture,overlay]
-    \node[yshift=-3cm] at (current page.north west)
+    \edef\headershift{\ifnum\value{pagecounter}=0 -3cm\else -2cm\fi}
+    \node[yshift=\headershift] at (current page.north west)
       {\begin{tikzpicture}[remember picture, overlay]
         \node[anchor=east,xshift=.9\paperwidth,rectangle,
               rounded corners=3pt,inner sep=11pt,
