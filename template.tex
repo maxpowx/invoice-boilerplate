@@ -307,7 +307,13 @@ $endif$%
   % invoice lines
       $for(service.line/pairs)$
         @ \noalign{\vskip 2mm} \refstepcounter{pos} \thepos
-        & @ $it.value.description$ 
+        & @ {\edef\servicekey{$it.key$}%
+          $for(account/pairs)$%
+            \edef\accountkey{$it.key$}%
+            \ifx\servicekey\accountkey%
+              $it.value.description$% 
+            \fi%
+          $endfor$}%
         $if(show-details)$
           $if(it.value.details)$\newline \begin{itemize} 
             $for(it.value.details)$%
