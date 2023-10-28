@@ -294,7 +294,7 @@ $endif$%
 
 \newcounter{pos}
 \setcounter{pos}{0}
-
+\providecommand{\rate}{1}%
 \small
 \begin{spreadtab}{{tabular}[t]{lp{7cm}crr}}
   \hdashline[1pt/1pt]
@@ -340,7 +340,15 @@ $endif$%
           $endfor$%
         $endif$%
         & {:={$it.value.quantity$}}
-        & \dCurrency{$invoice.currency$}{:={$it.value.unit-price$}}
+        & %\dCurrency{$invoice.currency$}{%
+          \edef\servicekey{$it.key$}%
+            $for(account/pairs)$%
+              \edef\accountkey{$it.key$}%
+              \ifx\servicekey\accountkey%
+                \StrSubstitute{:={$it.value.unit-price$}}{:=}{}%
+              \fi%
+            $endfor$%
+          %}%
         & \dCurrency{$invoice.currency$}{:={[-2,0]*[-1,0]}}\\
       $endfor$%
       \noalign{\vskip 2mm} \hline
