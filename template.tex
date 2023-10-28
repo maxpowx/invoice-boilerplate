@@ -316,16 +316,22 @@ $endif$%
           $endif$%
         $endif$%
         $if(show-metadata)$
-          $if(it.value.metadata)$%
+          \edef\servicekey{$it.key$}%
+          $for(account/pairs)$%
+            \edef\accountkey{$it.key$}%
+            \ifx\servicekey\accountkey%
+            $if(it.value.metadata)$
             \begin{blockquote} 
               \footnotesize \color{light-text-accent1}
-              \begin{itemize}[leftmargin=0pt, label={}, labelsep=0pt, itemsep=2pt, parsep=0pt]
+              % \begin{itemize}[leftmargin=0pt, label={}, labelsep=0pt, itemsep=2pt, parsep=0pt]%
                 $for(it.value.metadata/pairs)$%
-                  \item \color{light-text-light}$it.key$ | \color{light-text-accent1}$it.value$
+                  \item \color{light-text-light}$it.key$ | \color{light-text-accent1}$it.value$%
                 $endfor$%
-              \end{itemize} 
+              % \end{itemize}%
             \end{blockquote}
-          $endif$%
+            $endif$%
+            \fi%
+          $endfor$%
         $endif$%
         & {:={$it.value.quantity$}}
         & \dCurrency{$invoice.currency$}{:={$it.value.unit-price$}}
